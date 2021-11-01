@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "login.h"
+#include "display_team.h"
+#include "trip.h";
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -15,7 +18,18 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_Display_Teams_Button_clicked();
+
+    void on_Trip_Button_clicked();
+
+    void on_Login_Button_clicked();
+
 private:
     Ui::MainWindow *ui;
+    display_team *team;
+    login *log;
+    trip *trp;
+
 };
 #endif // MAINWINDOW_H
