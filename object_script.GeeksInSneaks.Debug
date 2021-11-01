@@ -1,0 +1,10 @@
+debug/db.o
+debug/display_team.o
+debug/login.o
+debug/main.o
+debug/mainwindow.o
+debug/trip.o
+debug/moc_display_team.o
+debug/moc_login.o
+debug/moc_mainwindow.o
+debug/moc_trip.o
