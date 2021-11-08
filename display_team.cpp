@@ -23,10 +23,10 @@ display_team::display_team(QWidget *parent) :
 
     login conn;
 
-    QSqlQueryModel * modal=new QSqlQueryModel();
+    auto * modal = new QSqlQueryModel();
 
         conn.connOpen();
-        QSqlQuery* qry=new QSqlQuery(conn.mydb);
+        auto* qry=new QSqlQuery(conn.mydb);
         qry->prepare("Select TeamName, ArenaName, Conference, Division, StadiumCapacity, JoinedLeague, Coach from GISdata");
         qry->exec();
 
@@ -46,10 +46,10 @@ display_team::~display_team()
 void display_team::on_reload_button_clicked()
 {
     login conn;
-        QSqlQueryModel * modal=new QSqlQueryModel();
+        auto * modal=new QSqlQueryModel();
 
         conn.connOpen();
-        QSqlQuery* qry=new QSqlQuery(conn.mydb);
+        auto* qry=new QSqlQuery(conn.mydb);
 
         qry->prepare("Select TeamName, ArenaName, Conference, Division, StadiumCapacity, JoinedLeague, Coach from GISdata");
 
@@ -64,10 +64,10 @@ void display_team::on_reload_button_clicked()
 void display_team::on_combo_sort_activated(const QString &arg1)
 {
     login conn;
-    QSqlQueryModel * modal=new QSqlQueryModel();
+    auto * modal=new QSqlQueryModel();
 
     conn.connOpen();
-    QSqlQuery* qry=new QSqlQuery(conn.mydb);
+    auto* qry=new QSqlQuery(conn.mydb);
 
     // QMessageBox::information(this, "Title", ui->combo_sort->currentText());
     if(ui->combo_sort->currentText() == "Team Name")

@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include "login.h"
 #include "display_team.h"
-#include "trip.h";
+#include "trip.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
