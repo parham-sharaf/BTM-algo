@@ -14,11 +14,15 @@
 #include "login.h"
 #include <QSqlQueryModel>
 
+#include <iostream>
+using namespace std;
+
 
 display_team::display_team(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::display_team)
 {
+    cout << "here" << endl;
     ui->setupUi(this);
 
     login conn;
@@ -45,11 +49,12 @@ display_team::~display_team()
 
 void display_team::on_reload_button_clicked()
 {
+    cout << "here1" << endl;
     login conn;
-        auto * modal=new QSqlQueryModel();
+        auto * modal = new QSqlQueryModel();
 
         conn.connOpen();
-        auto* qry=new QSqlQuery(conn.mydb);
+        auto* qry = new QSqlQuery(conn.mydb);
 
         qry->prepare("Select TeamName, ArenaName, Conference, Division, StadiumCapacity, JoinedLeague, Coach from GISdata");
 
@@ -59,32 +64,43 @@ void display_team::on_reload_button_clicked()
 
         qDebug() << (modal->rowCount());
 
+        connect(ui->team_name_combo_box, SIGNAL(currentTextChanged(QString)), this, SLOT(displayInfo(QString)));
+
 }
 
-void display_team::on_combo_sort_activated(const QString &arg1)
+//void display_team::on_combo_sort_activated(const QString &arg1)
+//{
+
+//}
+
+void display_team::displayInfo(const QString &arg1)
 {
     login conn;
-    auto * modal=new QSqlQueryModel();
+    auto * modal = new QSqlQueryModel();
 
     conn.connOpen();
-    auto* qry=new QSqlQuery(conn.mydb);
+    auto* qry = new QSqlQuery(conn.mydb);
 
     // QMessageBox::information(this, "Title", ui->combo_sort->currentText());
-    if(ui->combo_sort->currentText() == "Team Name")
+    if(ui->team_name_combo_box->currentText() == "Team Name")
     {
+        cout << "team name" << endl;
         qry->prepare("select TeamName, ArenaName, Conference, Division, StadiumCapacity, JoinedLeague, Coach from GISdata order by TeamName");
     }
-    else if (ui->combo_sort->currentText() == "Arena")
+    else if (ui->team_name_combo_box->currentText() == "Arena Name")
     {
+        cout << "arena" << endl;
         qry->prepare("select TeamName, ArenaName, Conference, Division, StadiumCapacity, JoinedLeague, Coach from GISdata order by ArenaName");
     }
 
-    else if (ui->combo_sort->currentText() == "Capacity")
+    else if (ui->team_name_combo_box->currentText() == "Capacity")
     {
+        cout << "capacity" << endl;
         qry->prepare("select TeamName, ArenaName, Conference, Division, StadiumCapacity, JoinedLeague, Coach from GISdata order by StadiumCapacity");
     }
-    else if (ui->combo_sort->currentText() == "Year Joined")
+    else if (ui->team_name_combo_box->currentText() == "Year Joined")
     {
+        cout << "year joined" << endl;
         qry->prepare("select TeamName, ArenaName, Conference, Division, StadiumCapacity, JoinedLeague, Coach from GISdata order by JoinedLeague");
     }
     qry->exec();

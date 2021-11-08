@@ -90,7 +90,7 @@
     <string>Eastern Conference</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="combo_sort">
+  <widget class="QComboBox" name="team_name_combo_box">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -198,7 +198,7 @@
     <string>Trip</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="combo_sort_2">
+  <widget class="QComboBox" name="team_city">
    <property name="geometry">
     <rect>
      <x>20</x>

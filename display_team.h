@@ -21,7 +21,7 @@ public:
 private slots:
      void on_reload_button_clicked();
 
-     void on_combo_sort_activated(const QString &arg1);
+     void displayInfo(const QString &arg1);
 
 private:
     Ui::display_team *ui;

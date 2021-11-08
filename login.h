@@ -27,7 +27,7 @@ public:
           mydb=QSqlDatabase::addDatabase("QSQLITE");
 
           // PUT IN YOUR OWN FILE PATH!
-          mydb.setDatabaseName("/Users/mered/OneDrive/Desktop/GISdata.sqlite");
+          mydb.setDatabaseName("/home/parham/Personal/School/Saddleback/2021 Fall/CS 1D/Project-2-CS1D/DB/GISdata.sqlite");
 
           if(!mydb.open())
           {
