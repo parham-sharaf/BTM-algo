@@ -16,20 +16,21 @@ class login : public QDialog
     Q_OBJECT
 
 public:
-    QSqlDatabase mydb;
+    QSqlDatabase informationDb;
+    QSqlDatabase distancesDb;
 
       void connClose()
       {
-          mydb.close();
+          informationDb.close();
       }
       bool connOpen()
       {
-          mydb=QSqlDatabase::addDatabase("QSQLITE");
+          informationDb=QSqlDatabase::addDatabase("QSQLITE");
 
           // PUT IN YOUR OWN FILE PATH!
-          mydb.setDatabaseName("/home/parham/Personal/School/Saddleback/2021 Fall/CS 1D/Project-2-CS1D/DB/GISdata.sqlite");
+          informationDb.setDatabaseName("/home/parham/Personal/School/Saddleback/2021 Fall/CS 1D/Project-2-CS1D/DB/GISdata.sqlite");
 
-          if(!mydb.open())
+          if(!informationDb.open())
           {
               qDebug() << "Failed to open the database";
                  return false;
