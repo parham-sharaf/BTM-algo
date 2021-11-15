@@ -25,10 +25,10 @@ display_team::display_team(QWidget *parent) :
 
     QSqlQueryModel * modal=new QSqlQueryModel();
 
-        conn.connOpen();
-        QSqlQuery* qry=new QSqlQuery(conn.mydb);
-        qry->prepare("Select TeamName, ArenaName, Conference, Division, StadiumCapacity, JoinedLeague, Coach from GISdata");
-        qry->exec();
+    conn.connOpen();
+    QSqlQuery* qry=new QSqlQuery(conn.mydb);
+    qry->prepare("Select TeamName, ArenaName, Conference, Division, StadiumCapacity, JoinedLeague, Coach from GISdata");
+    qry->exec();
 
         ui->tableView->verticalHeader()->setHidden(true);
         modal->setQuery(*qry);

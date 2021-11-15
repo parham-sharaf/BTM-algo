@@ -3,8 +3,9 @@
 
 #include <QMainWindow>
 #include "login.h"
+#include "trip.h"
 #include "display_team.h"
-#include "trip.h";
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

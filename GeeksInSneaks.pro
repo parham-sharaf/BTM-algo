@@ -9,22 +9,31 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    admin.cpp \
     db.cpp \
     display_team.cpp \
+    edit_souvenirs.cpp \
+    edit_teams.cpp \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
     trip.cpp
 
 HEADERS += \
+    admin.h \
     db.h \
     display_team.h \
+    edit_souvenirs.h \
+    edit_teams.h \
     login.h \
     mainwindow.h \
     trip.h
 
 FORMS += \
+    admin.ui \
     display_team.ui \
+    edit_souvenirs.ui \
+    edit_teams.ui \
     login.ui \
     mainwindow.ui \
     trip.ui
