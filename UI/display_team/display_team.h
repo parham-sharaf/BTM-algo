@@ -4,6 +4,13 @@
 #include <QDialog>
 #include <QSqlDatabase>
 #include <QSqlQuery>
+#include <QtSql>
+#include <QDebug>
+#include <QMessageBox>
+#include <QFileInfo>
+#include <QSqlQueryModel>
+#include <string>
+#include "../login/login.h"
 
 namespace Ui {
     class display_team;
@@ -22,6 +29,8 @@ private slots:
     void on_reload_button_clicked();
 
     void on_combo_sort_activated(const QString &arg1);
+
+    void on_push_souvenirs_clicked();
 
     void on_eastern_conf_Button_clicked();
 

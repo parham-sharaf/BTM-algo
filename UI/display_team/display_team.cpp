@@ -1,21 +1,5 @@
 #include "display_team.h"
 #include "ui_display_team.h"
-#include <QtSql>
-#include <QDebug>
-
-#include <QMessageBox>
-#include <QFileInfo>
-#include <string>
-#include <QSqlQuery>
-#include <QSqlQueryModel>
-#include <QMessageBox>
-#include <QFileDialog>
-#include <QFile>
-#include "login.h"
-#include <QSqlQueryModel>
-#include <string>
-#include <iostream>
-
 
 display_team::display_team(QWidget *parent) :
         QDialog(parent),
@@ -29,7 +13,7 @@ display_team::display_team(QWidget *parent) :
 
     conn.connOpen();
     QSqlQuery* qry=new QSqlQuery(conn.informationDb);
-    qry->prepare("Select TeamName, ArenaName, Conference, Division, StadiumCapacity, JoinedLeague, Coach from GISdata");
+    qry->prepare("Select TeamName, ArenaName, Conference, Division, StadiumCapacity, JoinedLeague, Coach from GeneralInfo");
     qry->exec();
 
     ui->tableView->verticalHeader()->setHidden(true);
@@ -46,7 +30,7 @@ display_team::display_team(QWidget *parent) :
 
     QSqlQuery* qry1 = new QSqlQuery(conn1.informationDb);
 
-    qry1->exec("select TeamName FROM GISData");
+    qry1->exec("select TeamName FROM GeneralInfo");
 
     modal1->setQuery(*qry1);
     ui->combo_team->setModel(modal1);
@@ -72,7 +56,7 @@ void display_team::on_reload_button_clicked()
     conn.connOpen();
     QSqlQuery* qry=new QSqlQuery(conn.informationDb);
 
-    qry->prepare("Select TeamName, ArenaName, Conference, Division, StadiumCapacity, JoinedLeague, Coach from GISdata");
+    qry->prepare("Select TeamName, ArenaName, Conference, Division, StadiumCapacity, JoinedLeague, Coach from GeneralInfo");
 
     qry->exec();
     modal->setQuery(*qry);
@@ -97,7 +81,7 @@ void display_team::on_combo_sort_activated(const QString &arg1)
     if (ui->year_checkBox->checkState() == Qt::Checked) sql += "JoinedLeague, ";
     if (ui->coach_checkBox->checkState() == Qt::Checked) sql += "Coach, ";
     sql = sql.substr(0, sql.length() - 2);
-    sql += " FROM GISdata ORDER BY ";
+    sql += " FROM GeneralInfo ORDER BY ";
 
     if (ui->combo_sort->currentText() == "Team Name") sql += "TeamName";
     else if (ui->combo_sort->currentText() == "Arena Name") sql += "ArenaName";
@@ -120,7 +104,7 @@ void display_team::on_eastern_conf_Button_clicked()
     conn.connOpen();
     QSqlQuery* qry=new QSqlQuery(conn.informationDb);
 
-    sql = "SELECT TeamName FROM GISdata WHERE Conference = 'Eastern'";
+    sql = "SELECT TeamName FROM GeneralInfo WHERE Conference = 'Eastern'";
     qry->prepare(sql.c_str());
 
     qry->exec();
@@ -139,7 +123,7 @@ void display_team::on_western_conf_Button_clicked()
     conn.connOpen();
     QSqlQuery* qry=new QSqlQuery(conn.informationDb);
 
-    sql = "SELECT TeamName FROM GISdata WHERE Conference = 'Western'";
+    sql = "SELECT TeamName FROM GeneralInfo WHERE Conference = 'Western'";
     qry->prepare(sql.c_str());
 
     qry->exec();
@@ -180,7 +164,7 @@ void display_team::on_combo_team_activated(const QString &arg1)
     QSqlQuery* qry=new QSqlQuery(conn.informationDb);
 
     sql = "SELECT TeamName, ArenaName, StadiumCapacity, Location, Conference, "
-          "Division, JoinedLeague, Coach From GISdata WHERE TeamName = "
+          "Division, JoinedLeague, Coach From GeneralInfo WHERE TeamName = "
           "'"+ui->combo_team->currentText().toStdString()+"'";
 
 
@@ -190,5 +174,34 @@ void display_team::on_combo_team_activated(const QString &arg1)
     modal->setQuery(*qry);
     ui->tableView->setModel(modal);
 
+}
+
+void display_team::on_push_souvenirs_clicked()
+{
+    QString teamName = ui->combo_team->currentText();
+
+    // set variable to the team name selected in the combo box
+//    ui->labelTeamS->setText(teamName + " Souvenir's");
+
+    login conn;
+    QSqlQueryModel *modal = new QSqlQueryModel;
+
+    conn.connOpen();
+
+    QSqlQuery* qry = new QSqlQuery(conn.informationDb);
+
+    sql = "SELECT SouvenirName, Price FROM Souvenirs WHERE TeamName='"+teamName.toStdString()+"'";
+    // select the souvenir and the price for the team selected in the combo box
+    qry->prepare(sql.c_str());
+    qry->exec();
+    modal->setQuery(*qry);
+
+    // set the headers for the table
+    modal->setHeaderData(0, Qt::Horizontal, tr("Souvenir"));
+    modal->setHeaderData(1, Qt::Horizontal, tr("Price"));
+
+
+    ui->tableView->setModel(modal);
+    conn.connClose();
 }
 

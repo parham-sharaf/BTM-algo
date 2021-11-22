@@ -4,7 +4,9 @@
 #include <QDialog>
 #include <QSqlDatabase>
 #include <QDebug>
-
+#include <QMessageBox>
+#include <QObject>
+#include "../../Admin/admin.h"
 
 namespace Ui
 {
@@ -45,8 +47,16 @@ public:
     explicit login(QWidget *parent = nullptr);
     ~login();
 
+private slots:
+    /**
+     * @brief on_pushButton_Login_clicked ensures correct login
+     * and opens admin screen
+     */
+    void on_pushButton_Login_clicked();
+
 private:
     Ui::login *ui;
+    admin *ad;
 };
 
 #endif // LOGIN_H

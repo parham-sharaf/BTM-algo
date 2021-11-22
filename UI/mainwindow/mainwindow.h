@@ -2,9 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "login.h"
-#include "display_team.h"
-#include "trip.h"
+#include "../login/login.h"
+#include "../display_team/display_team.h"
+#include "../trip/trip.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
