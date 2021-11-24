@@ -24,14 +24,15 @@ private slots:
 
     void on_load_Button_clicked();
 
-    void on_team_box1_activated(const QString &arg1);
+    void on_team_box1_activated();
 
-    void on_team_box2_activated(const QString &arg1);
+    void on_team_box2_activated();
 
     void on_delete_Button_2_clicked();
 
 private:
     Ui::edit_souvenirs *ui;
+    QString teamName;
 };
 
 #endif // EDIT_SOUVENIRS_H
