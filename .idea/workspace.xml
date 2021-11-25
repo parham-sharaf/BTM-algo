@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="Project-2-CS1D" targetName="Project-2-CS1D" />
+      <config projectName="Project-2-CS1D" targetName="Project-2-CS1D_autogen" />
+    </generated>
+  </component>
+  <component name="CMakeSettings" AUTO_RELOAD="true">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9466c0c8-ade0-45f7-ab99-9b73a35b46c1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/DB/GISdata.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/DB/GISdata.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/edit_souvenirs/edit_souvenirs.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/edit_souvenirs/edit_souvenirs.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/trip/trip.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/trip/trip.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="20cACmFxqkYp186sWlbq5tspEFJ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="sqlite" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="cidr.known.project.marker" value="true" />
+    <property name="cmake.loaded.for.project" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="unnamed" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Project-2-CS1D" RUN_TARGET_NAME="Project-2-CS1D" EXPLICIT_BUILD_TARGET_NAME="all">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9466c0c8-ade0-45f7-ab99-9b73a35b46c1" name="Changes" comment="" />
+      <created>1636333386592</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1636333386592</updated>
+      <workItem from="1636333394557" duration="5324000" />
+      <workItem from="1636398681929" duration="4555000" />
+      <workItem from="1636403794609" duration="8092000" />
+      <workItem from="1636420614760" duration="14698000" />
+      <workItem from="1636445410446" duration="223000" />
+      <workItem from="1636577879805" duration="6217000" />
+      <workItem from="1637005834311" duration="3757000" />
+      <workItem from="1637041582570" duration="1159000" />
+      <workItem from="1637175720018" duration="1948000" />
+      <workItem from="1637187664265" duration="6930000" />
+      <workItem from="1637208556011" duration="2007000" />
+      <workItem from="1637214594852" duration="2747000" />
+      <workItem from="1637557494278" duration="269000" />
+      <workItem from="1637558477094" duration="11045000" />
+      <workItem from="1637619443928" duration="10148000" />
+      <workItem from="1637705575264" duration="10203000" />
+      <workItem from="1637780235925" duration="7640000" />
+      <workItem from="1637790109916" duration="1121000" />
+      <workItem from="1637791254965" duration="415000" />
+      <workItem from="1637791693181" duration="61000" />
+      <workItem from="1637791796667" duration="434000" />
+      <workItem from="1637792266063" duration="11094000" />
+      <workItem from="1637825974988" duration="1538000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>
