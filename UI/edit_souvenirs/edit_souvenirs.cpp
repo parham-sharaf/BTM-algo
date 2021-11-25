@@ -52,13 +52,13 @@ edit_souvenirs::edit_souvenirs(QWidget *parent) :
 //            }
         ui->team_box2->addItem(qry->value(0).toString());
         ui->team_box1->addItem(qry->value(0).toString());
-
-        connect(ui->team_box1, SIGNAL(currentTextChanged(const QString)), this, SLOT(on_team_box1_activated()));
-        connect(ui->team_box2, SIGNAL(currentTextChanged(const QString)), this, SLOT(on_team_box2_activated()));
-        connect(ui->delete_Button_2, SIGNAL(clicked()), this, SLOT(on_delete_Button_2_clicked()), Qt::UniqueConnection);
-        connect(ui->delete_Button, SIGNAL(clicked()), this, SLOT(on_delete_Button_clicked()), Qt::UniqueConnection);
-        connect(ui->add_Button, SIGNAL(clicked()), this, SLOT(on_add_Button_clicked()), Qt::UniqueConnection);
     }
+
+    connect(ui->team_box1, SIGNAL(currentTextChanged(const QString)), this, SLOT(on_team_box1_activated()));
+    connect(ui->team_box2, SIGNAL(currentTextChanged(const QString)), this, SLOT(on_team_box2_activated()));
+    connect(ui->delete_Button_2, SIGNAL(clicked()), this, SLOT(on_delete_Button_2_clicked()), Qt::UniqueConnection);
+    connect(ui->delete_Button, SIGNAL(clicked()), this, SLOT(on_delete_Button_clicked()), Qt::UniqueConnection);
+    connect(ui->add_Button, SIGNAL(clicked()), this, SLOT(on_add_Button_clicked()), Qt::UniqueConnection);
 
     //read from a database into a vector
     //display vector on combo box
@@ -198,7 +198,7 @@ void edit_souvenirs::on_team_box1_activated()
 
     conn.connOpen();
     QSqlQuery* qry=new QSqlQuery(conn.informationDb);
-    teamName = ui->team_box2->currentText();
+    teamName = ui->team_box1->currentText();
     qry->prepare("SELECT * FROM Souvenirs WHERE TeamName == '"+ teamName + "'");
 
     qry->exec();
@@ -218,7 +218,7 @@ void edit_souvenirs::on_team_box2_activated()
     conn.connOpen();
     QSqlQuery* qry=new QSqlQuery(conn.informationDb);
 
-    teamName = ui->team_box1->currentText();
+    teamName = ui->team_box2->currentText();
     qry->prepare("SELECT * FROM Souvenirs WHERE TeamName == '"+ teamName + "'");
 
     qry->exec();
@@ -251,8 +251,8 @@ void edit_souvenirs::on_delete_Button_2_clicked()
     {
         QSqlQuery qry ;
         qry.prepare("UPDATE Souvenirs SET Price = " + ui->edit_cost->text()
-        + " WHERE SouvenirName IS '" + ui->edit_souv->text() + "' AND TeamName IS +'"
-        + teamName + "'");
+                    + " WHERE SouvenirName IS '" + ui->edit_souv->text() + "' AND TeamName IS +'"
+                    + teamName + "'");
 
         if(qry.exec())
         {

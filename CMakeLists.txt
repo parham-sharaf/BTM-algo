@@ -20,6 +20,8 @@ add_executable(Project-2-CS1D
         UI/trip/trip.cpp UI/trip/trip.h UI/trip/trip.ui
         UI/edit_teams/edit_teams.cpp UI/edit_teams/edit_teams.h UI/edit_teams/edit_teams.ui
         UI/edit_souvenirs/edit_souvenirs.cpp UI/edit_souvenirs/edit_souvenirs.h UI/edit_souvenirs/edit_souvenirs.ui
+        UI/display_purchases/display_purchases.cpp UI/display_purchases/display_purchases.h UI/display_purchases/display_purchases.ui
+        UI/purchase_souvenirs/purchase_souvenirs.cpp UI/purchase_souvenirs/purchase_souvenirs.h UI/purchase_souvenirs/purchase_souvenirs.ui
         manage_teams/manage_teams.cpp manage_teams/manage_teams.h
         main.cpp
         )

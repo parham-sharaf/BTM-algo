@@ -41,38 +41,38 @@ public:
 
     void initialize();
     void shortest_path(int initial, int target);
-    void minimum_spanning_tree();
-    int depth_first_search(Teams team);
-    int breadth_first_search(Teams team);
+    double minimum_spanning_tree();
+    double depth_first_search(Teams team);
+    double breadth_first_search(Teams team);
 
 private:
     Graph g;
     std::array<double, 57> weights =
             {{
-                 244.8, 383.8, 469.1, 438.8,
-                 215.3, 550,
-                 5.1, 97.4,
-                 585.1, 730.9, 402,
-                 282.6, 181.6, 92.1,
-                 164.9, 315.5, 431.2, 371,
-                 239.8, 206.7, 273.8,
-                 1016.1, 913.9, 679.6, 862.4, 519.1,
-                 694.7, 616.1, 231,
-                 385.1, 87.9,
-                 347.7, 197.4,
-                 0.0, 1016.1, 385.1, 373, 388.4, 688.4,
-                 373, 388.4, 688.4,
-                 395, 466,
-                 730.9, 866.1, 235.6,
-                 337.1,
-                 1729.3,
-                 491.1,
-                 679.6,
-                 140,
-                 579.7, 765.5,
-                 491.1,
-                 371,
-                 -1}};
+                     244.8, 383.8, 469.1, 438.8,
+                     215.3, 550,
+                     5.1, 97.4,
+                     585.1, 730.9, 402,
+                     282.6, 181.6, 92.1,
+                     164.9, 315.5, 431.2, 371,
+                     239.8, 206.7, 273.8,
+                     1016.1, 913.9, 679.6, 862.4, 519.1,
+                     694.7, 616.1, 231,
+                     385.1, 87.9,
+                     347.7, 197.4,
+                     0.0, 1016.1, 385.1, 373, 388.4, 688.4,
+                     373, 388.4, 688.4,
+                     395, 466,
+                     730.9, 866.1, 235.6,
+                     337.1,
+                     1729.3,
+                     491.1,
+                     679.6,
+                     140,
+                     579.7, 765.5,
+                     491.1,
+                     371,
+                     -1}};
 
     std::array<std::string,30> teamNames
             {"Atlanta Hawks", "Boston Celtics", "Brooklyn Nets", "Charlotte_Hornets",
