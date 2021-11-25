@@ -2,8 +2,8 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="Project-2-CS1D" targetName="Project-2-CS1D" />
-      <config projectName="Project-2-CS1D" targetName="Project-2-CS1D_autogen" />
+      <config projectName="Project" targetName="Project-2-CS1D" />
+      <config projectName="Project" targetName="Project-2-CS1D_autogen" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -12,12 +12,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9466c0c8-ade0-45f7-ab99-9b73a35b46c1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/DB/GISdata.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/DB/GISdata.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/edit_souvenirs/edit_souvenirs.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/edit_souvenirs/edit_souvenirs.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/trip/trip.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/trip/trip.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="9466c0c8-ade0-45f7-ab99-9b73a35b46c1" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,7 +21,6 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -63,7 +57,7 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="unnamed" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Project-2-CS1D" RUN_TARGET_NAME="Project-2-CS1D" EXPLICIT_BUILD_TARGET_NAME="all">
+    <configuration name="unnamed" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Project" RUN_TARGET_NAME="Project-2-CS1D" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -104,7 +98,7 @@
       <workItem from="1637791693181" duration="61000" />
       <workItem from="1637791796667" duration="434000" />
       <workItem from="1637792266063" duration="11094000" />
-      <workItem from="1637825974988" duration="1538000" />
+      <workItem from="1637825974988" duration="1754000" />
     </task>
     <servers />
   </component>
