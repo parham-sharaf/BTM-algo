@@ -1,5 +1,4 @@
 #include "UI/mainwindow/mainwindow.h"
-#include "manage_teams/manage_teams.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
