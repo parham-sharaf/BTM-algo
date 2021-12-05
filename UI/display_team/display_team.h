@@ -10,7 +10,9 @@
 #include <QFileInfo>
 #include <QSqlQueryModel>
 #include <string>
+#include <vector>
 #include "../login/login.h"
+
 
 namespace Ui {
     class display_team;
@@ -39,10 +41,19 @@ private slots:
     void on_division_comboBox_activated(const QString &arg1);
 
     void on_combo_team_activated(const QString &arg1);
+    
+    void on_clear_plan_clicked();
+
+    void on_team_name_checkBox_state_changed();
+    void on_arena_checkBox_state_changed();
+    void on_capacity_checkBox_state_changed();
+    void on_year_checkBox_state_changed();
+    void on_coach_checkBox_state_changed();
 
 private:
     Ui::display_team *ui;
     std::string sql;
+    std::vector<std::string> headers;
 
 };
 

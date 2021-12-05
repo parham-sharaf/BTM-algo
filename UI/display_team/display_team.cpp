@@ -1,15 +1,17 @@
 #include "display_team.h"
 #include "ui_display_team.h"
+#include <iostream>
 
 display_team::display_team(QWidget *parent) :
         QDialog(parent),
         ui(new Ui::display_team)
 {
+    this->showMaximized();
     ui->setupUi(this);
 
     login conn;
 
-    QSqlQueryModel * modal=new QSqlQueryModel();
+    QSqlQueryModel * modal = new QSqlQueryModel();
 
     conn.connOpen();
     QSqlQuery* qry=new QSqlQuery(conn.informationDb);
@@ -21,7 +23,6 @@ display_team::display_team(QWidget *parent) :
     ui->tableView->resizeColumnsToContents();
     ui->tableView->setModel(modal);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    // conn.connClose();
 
     login conn1;
     QSqlQueryModel *modal1 = new QSqlQueryModel();
@@ -37,9 +38,22 @@ display_team::display_team(QWidget *parent) :
 
     conn1.connClose();
 
+    modal->setHeaderData(0, Qt::Horizontal, QObject::tr("Team Name"));
+    modal->setHeaderData(1, Qt::Horizontal, QObject::tr("Arena Name"));
+    modal->setHeaderData(2, Qt::Horizontal, QObject::tr("Conference"));
+    modal->setHeaderData(3, Qt::Horizontal, QObject::tr("Division"));
+    modal->setHeaderData(4, Qt::Horizontal, QObject::tr("Stadium Capacity"));
+    modal->setHeaderData(5, Qt::Horizontal, QObject::tr("Year Joined"));
+    modal->setHeaderData(6, Qt::Horizontal, QObject::tr("Coach"));
+
     connect(ui->combo_sort, SIGNAL(currentTextChanged(QString)), this, SLOT(on_combo_sort_activated(QString)));
-    connect(ui->division_comboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(on_division_comboBox_activated(QString)));
+    connect(ui->division_comboBox, SIGNAL(isChecked(QString)), this, SLOT(on_division_comboBox_activated(QString)));
     connect(ui->combo_team, SIGNAL(currentTextChanged(QString)), this, SLOT(on_combo_team_activated(QString)));
+    connect(ui->team_name_checkBox, SIGNAL(stateChanged(int)), this, SLOT(on_team_name_checkBox_state_changed()));
+    connect(ui->arena_checkBox, SIGNAL(stateChanged(int)), this, SLOT(on_arena_checkBox_state_changed()));
+    connect(ui->capacity_checkBox, SIGNAL(stateChanged(int)), this, SLOT(on_capacity_checkBox_state_changed()));
+    connect(ui->year_checkBox, SIGNAL(stateChanged(int)), this, SLOT(on_year_checkBox_state_changed()));
+    connect(ui->coach_checkBox, SIGNAL(stateChanged(int)), this, SLOT(on_coach_checkBox_state_changed()));
 
 }
 
@@ -76,17 +90,21 @@ void display_team::on_reload_button_clicked()
 void display_team::on_combo_sort_activated(const QString &arg1)
 {
     login conn;
-    QSqlQueryModel * modal=new QSqlQueryModel();
+    QSqlQueryModel * modal = new QSqlQueryModel();
 
     conn.connOpen();
-    QSqlQuery* qry=new QSqlQuery(conn.informationDb);
+    QSqlQuery* qry = new QSqlQuery(conn.informationDb);
 
+    int entry = 0;
     sql = "SELECT ";
-    if (ui->team_name_checkBox->checkState() == Qt::Checked) sql+= "TeamName, ";
-    if (ui->arena_checkBox->checkState() == Qt::Checked) sql += "ArenaName, ";
-    if (ui->capacity_checkBox->checkState() == Qt::Checked) sql += "StadiumCapacity, ";
-    if (ui->year_checkBox->checkState() == Qt::Checked) sql += "JoinedLeague, ";
-    if (ui->coach_checkBox->checkState() == Qt::Checked) sql += "Coach, ";
+//    if (ui->team_name_checkBox->checkState() == Qt::Checked) sql+= "TeamName, ";
+//    if (ui->arena_checkBox->checkState() == Qt::Checked) sql += "ArenaName, ";
+//    if (ui->capacity_checkBox->checkState() == Qt::Checked) sql += "StadiumCapacity, ";
+//    if (ui->year_checkBox->checkState() == Qt::Checked) sql += "JoinedLeague, ";
+//    if (ui->coach_checkBox->checkState() == Qt::Checked) sql += "Coach, ";
+    for (const auto& item: headers) {
+        sql += item;
+    }
     sql = sql.substr(0, sql.length() - 2);
     sql += " FROM GeneralInfo ORDER BY ";
 
@@ -99,6 +117,24 @@ void display_team::on_combo_sort_activated(const QString &arg1)
     qry->exec();
     modal->setQuery(*qry);
     ui->tableView->setModel(modal);
+
+    for (const auto& item: headers) {
+        if (item == "TeamName, ")
+            modal->setHeaderData(entry++, Qt::Horizontal,
+                                 QObject::tr("Team Name"));
+        if (item == "ArenaName, ")
+            modal->setHeaderData(entry++, Qt::Horizontal,
+                                 QObject::tr("Arena Name"));
+        if (item == "StadiumCapacity, ")
+            modal->setHeaderData(entry++, Qt::Horizontal,
+                                 QObject::tr("Stadium Capacity"));
+        if (item == "JoinedLeague, ")
+            modal->setHeaderData(entry++, Qt::Horizontal,
+                                 QObject::tr("Year Joined"));
+        if (item == "Coach, ")
+            modal->setHeaderData(entry++, Qt::Horizontal,
+                                 QObject::tr("Coach"));
+    }
 
     qDebug() << (modal->rowCount());
 }
@@ -117,6 +153,8 @@ void display_team::on_eastern_conf_Button_clicked()
     qry->exec();
     modal->setQuery(*qry);
     ui->tableView->setModel(modal);
+
+    modal->setHeaderData(0, Qt::Horizontal, QObject::tr("Team Name"));
 
     qDebug() << (modal->rowCount());
 
@@ -137,6 +175,7 @@ void display_team::on_western_conf_Button_clicked()
     modal->setQuery(*qry);
     ui->tableView->setModel(modal);
 
+    modal->setHeaderData(0, Qt::Horizontal, QObject::tr("Team Name"));
     qDebug() << (modal->rowCount());
 }
 
@@ -157,6 +196,8 @@ void display_team::on_division_comboBox_activated(const QString &arg1)
     modal->setQuery(*qry);
     ui->tableView->setModel(modal);
 
+    modal->setHeaderData(0, Qt::Horizontal, QObject::tr("Team Name"));
+
     qDebug() << (modal->rowCount());
 }
 
@@ -165,10 +206,10 @@ void display_team::on_combo_team_activated(const QString &arg1)
 {
 
     login conn;
-    QSqlQueryModel * modal=new QSqlQueryModel();
+    QSqlQueryModel * modal = new QSqlQueryModel();
 
     conn.connOpen();
-    QSqlQuery* qry=new QSqlQuery(conn.informationDb);
+    QSqlQuery* qry = new QSqlQuery(conn.informationDb);
 
     sql = "SELECT TeamName, ArenaName, StadiumCapacity, Location, Conference, "
           "Division, JoinedLeague, Coach From GeneralInfo WHERE TeamName = "
@@ -180,6 +221,11 @@ void display_team::on_combo_team_activated(const QString &arg1)
     qry->exec();
     modal->setQuery(*qry);
     ui->tableView->setModel(modal);
+
+    modal->setHeaderData(0, Qt::Horizontal, QObject::tr("Team Name"));
+    modal->setHeaderData(1, Qt::Horizontal, QObject::tr("Arena Name"));
+    modal->setHeaderData(2, Qt::Horizontal, QObject::tr("Stadium Capacity"));
+    modal->setHeaderData(6, Qt::Horizontal, QObject::tr("Year Joined"));
 
 }
 
@@ -212,3 +258,33 @@ void display_team::on_push_souvenirs_clicked()
     conn.connClose();
 }
 
+
+void display_team::on_clear_plan_clicked()
+{
+    ui->team_name_checkBox->setCheckState(Qt::Unchecked);
+    ui->arena_checkBox->setCheckState(Qt::Unchecked);
+    ui->capacity_checkBox->setCheckState(Qt::Unchecked);
+    ui->year_checkBox->setCheckState(Qt::Unchecked);
+    ui->coach_checkBox->setCheckState(Qt::Unchecked);
+    ui->combo_sort->setCurrentIndex(0);
+    ui->division_comboBox->setCurrentIndex(0);
+    ui->combo_team->setCurrentIndex(0);
+    headers.clear();
+}
+
+void display_team::on_team_name_checkBox_state_changed() {
+    if (ui->team_name_checkBox->checkState() == Qt::Checked) headers.emplace_back("TeamName, ");
+}
+void display_team::on_arena_checkBox_state_changed() {
+    if (ui->arena_checkBox->checkState() == Qt::Checked) headers.emplace_back("ArenaName, ");
+}
+
+void display_team::on_capacity_checkBox_state_changed() {
+    if (ui->capacity_checkBox->checkState() == Qt::Checked) headers.emplace_back("StadiumCapacity, ");
+}
+void display_team::on_year_checkBox_state_changed() {
+    if (ui->year_checkBox->checkState() == Qt::Checked) headers.emplace_back("JoinedLeague, ");
+}
+void display_team::on_coach_checkBox_state_changed() {
+    if (ui->coach_checkBox->checkState() == Qt::Checked) headers.emplace_back("Coach, ");
+}

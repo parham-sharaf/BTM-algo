@@ -15,7 +15,7 @@ add_executable(Project-2-CS1D
         UI/mainwindow/mainwindow.cpp UI/mainwindow/mainwindow.h UI/mainwindow/mainwindow.ui
         Admin/admin.cpp Admin/admin.h Admin/admin.ui
         db.cpp db.h
-        UI/display_team/display_team.cpp UI/display_team/display_team.h UI/display_team/display_team.ui UI/display_team/display_teams.ui
+        UI/display_team/display_team.cpp UI/display_team/display_team.h UI/display_team/display_team.ui
         UI/login/login.cpp UI/login/login.h UI/login/login.ui
         UI/trip/trip.cpp UI/trip/trip.h UI/trip/trip.ui
         UI/edit_teams/edit_teams.cpp UI/edit_teams/edit_teams.h UI/edit_teams/edit_teams.ui
