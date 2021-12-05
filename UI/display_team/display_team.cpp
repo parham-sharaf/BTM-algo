@@ -51,19 +51,26 @@ display_team::~display_team()
 void display_team::on_reload_button_clicked()
 {
     login conn;
-    QSqlQueryModel * modal=new QSqlQueryModel();
+    QSqlQueryModel *modal = new QSqlQueryModel();
 
     conn.connOpen();
-    QSqlQuery* qry=new QSqlQuery(conn.informationDb);
+    QSqlQuery* qry = new QSqlQuery(conn.informationDb);
 
     qry->prepare("Select TeamName, ArenaName, Conference, Division, StadiumCapacity, JoinedLeague, Coach from GeneralInfo");
-
     qry->exec();
     modal->setQuery(*qry);
-    ui->tableView->setModel(modal);
 
     qDebug() << (modal->rowCount());
 
+    modal->setHeaderData(0, Qt::Horizontal, QObject::tr("Team Name"));
+    modal->setHeaderData(1, Qt::Horizontal, QObject::tr("Arena Name"));
+    modal->setHeaderData(2, Qt::Horizontal, QObject::tr("Conference"));
+    modal->setHeaderData(3, Qt::Horizontal, QObject::tr("Division"));
+    modal->setHeaderData(4, Qt::Horizontal, QObject::tr("Stadium Capacity"));
+    modal->setHeaderData(5, Qt::Horizontal, QObject::tr("Year Joined"));
+    modal->setHeaderData(6, Qt::Horizontal, QObject::tr("Coach"));
+
+    ui->tableView->setModel(modal);
 }
 
 void display_team::on_combo_sort_activated(const QString &arg1)
