@@ -9,6 +9,8 @@
 #include <iostream>
 #include <stack>
 #include <deque>
+#include <algorithm>
+
 
 
 struct Distance {
@@ -42,11 +44,12 @@ public:
 
 
     void initialize();
-    void shortest_path(int initial, int target);
+    double shortest_path(int initial, int target);
     double minimum_spanning_tree();
     double depth_first_search(Teams team);
     double breadth_first_search(Teams team);
     std::deque<City> getTravelPlan();
+    double createCustomPlan(const std::vector<std::string>&, bool order);
 
     const char* teamNames[30] {
             "Atlanta Hawks", "Boston Celtics", "Brooklyn Nets", "Charlotte Hornets",
@@ -59,6 +62,32 @@ public:
             "Utah Jazz", "Washington Wizards"
     };
 private:
+    typedef std::pair<Teams, Teams> cpair;
+
+    std::array<std::pair<int, int>, 56> edges = {{
+        cpair(Atlanta_Hawks, Charlotte_Hornets), cpair(Atlanta_Hawks, Memphis_Grizzlies), cpair(Atlanta_Hawks, New_Orleans_Pelicans), cpair(Atlanta_Hawks, Orlando_Magic),
+        cpair(Boston_Celtics, New_York_Knicks), cpair(Boston_Celtics, Toronto_Raptors),
+        cpair(Brooklyn_Nets, New_York_Knicks), cpair(Brooklyn_Nets, Philadelphia_76ers),
+        cpair(Charlotte_Hornets, Indiana_Pacers), cpair(Charlotte_Hornets, Miami_Heat), cpair(Charlotte_Hornets, Washington_Wizards),
+        cpair(Chicago_Bulls, Detroit_Pistons), cpair(Chicago_Bulls, Indiana_Pacers), cpair(Chicago_Bulls, Milwaukee_Bucks),
+        cpair(Cleveland_Cavaliers, Detroit_Pistons), cpair(Cleveland_Cavaliers, Indiana_Pacers), cpair(Cleveland_Cavaliers, Philadelphia_76ers), cpair(Cleveland_Cavaliers, Washington_Wizards),
+        cpair(Dallas_Mavericks, Houston_Rockets), cpair(Dallas_Mavericks, Oklahoma_City_Thunder), cpair(Dallas_Mavericks, San_Antonio_Spurs),
+        cpair(Denver_Nuggets, Los_Angeles_Lakers), cpair(Denver_Nuggets, Minnesota_Timberwolves), cpair(Denver_Nuggets, Oklahoma_City_Thunder), cpair(Denver_Nuggets, Phoenix_Suns), cpair(Denver_Nuggets, Utah_Jazz),
+        cpair(Detroit_Pistons, Minnesota_Timberwolves), cpair(Detroit_Pistons, New_York_Knicks), cpair(Detroit_Pistons, Toronto_Raptors),
+        cpair(Golden_State_Warriors, Los_Angeles_Lakers), cpair(Golden_State_Warriors, Sacramento_Kings),
+        cpair(Houston_Rockets, New_Orleans_Pelicans), cpair(Houston_Rockets, San_Antonio_Spurs),
+        cpair(Los_Angeles_Clippers, Los_Angeles_Lakers), cpair(Los_Angeles_Clippers, Denver_Nuggets), cpair(Los_Angeles_Clippers, Golden_State_Warriors), cpair(Los_Angeles_Clippers, Phoenix_Suns), cpair(Los_Angeles_Clippers, Sacramento_Kings), cpair(Los_Angeles_Clippers, Utah_Jazz),
+        cpair(Los_Angeles_Lakers, Phoenix_Suns), cpair(Los_Angeles_Lakers, Utah_Jazz), cpair(Los_Angeles_Lakers, Sacramento_Kings),
+        cpair(Memphis_Grizzlies, New_Orleans_Pelicans), cpair(Memphis_Grizzlies, Oklahoma_City_Thunder),
+        cpair(Miami_Heat, New_Orleans_Pelicans), cpair(Miami_Heat, Orlando_Magic),
+        cpair(Milwaukee_Bucks, Minnesota_Timberwolves),
+        cpair(Minnesota_Timberwolves, Portland_Trail_Blazers),
+        cpair(New_York_Knicks, Toronto_Raptors),
+        cpair(Oklahoma_City_Thunder, Denver_Nuggets),
+        cpair(Philadelphia_76ers, Washington_Wizards),
+        cpair(Portland_Trail_Blazers, Sacramento_Kings), cpair(Portland_Trail_Blazers, Utah_Jazz),
+    }};
+
     Graph g;
     std::array<double, 57> weights = {{
         244.8, 383.8, 469.1, 438.8,
@@ -73,7 +102,7 @@ private:
         385.1, 87.9,
         347.7, 197.4,
         0.0, 1016.1, 385.1, 373, 388.4, 688.4,
-        373, 688.4,
+        373, 688.4, 388.4,
         395, 466,
         866.1, 235.6,
         337.1,
