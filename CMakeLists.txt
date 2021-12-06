@@ -23,6 +23,7 @@ add_executable(Project-2-CS1D
         UI/display_purchases/display_purchases.cpp UI/display_purchases/display_purchases.h UI/display_purchases/display_purchases.ui
         UI/purchase_souvenirs/purchase_souvenirs.cpp UI/purchase_souvenirs/purchase_souvenirs.h UI/purchase_souvenirs/purchase_souvenirs.ui
         manage_teams/manage_teams.cpp manage_teams/manage_teams.h
+        map/map.cpp map/map.h
         main.cpp
         )
 

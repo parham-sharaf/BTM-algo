@@ -4,30 +4,28 @@ void manage_teams::initialize() {
     typedef std::pair<Teams, Teams> cpair;
 
     std::array<std::pair<int, int>, 56> edges = {{
-                                                         cpair(Atlanta_Hawks, Charlotte_Hornets), cpair(Atlanta_Hawks, Memphis_Grizzlies), cpair(Atlanta_Hawks, New_Orleans_Pelicans), cpair(Atlanta_Hawks, Orlando_Magic),
-                                                         cpair(Boston_Celtics, New_York_Knicks), cpair(Boston_Celtics, Toronto_Raptors),
-                                                         cpair(Brooklyn_Nets, New_York_Knicks), cpair(Brooklyn_Nets, Philadelphia_76ers),
-                                                         cpair(Charlotte_Hornets, Indiana_Pacers), cpair(Charlotte_Hornets, Miami_Heat), cpair(Charlotte_Hornets, Washington_Wizards),
-                                                         cpair(Chicago_Bulls, Detroit_Pistons), cpair(Chicago_Bulls, Indiana_Pacers), cpair(Chicago_Bulls, Milwaukee_Bucks),
-                                                         cpair(Cleveland_Cavaliers, Detroit_Pistons), cpair(Cleveland_Cavaliers, Indiana_Pacers), cpair(Cleveland_Cavaliers, Philadelphia_76ers), cpair(Cleveland_Cavaliers, Washington_Wizards),
-                                                         cpair(Dallas_Mavericks, Houston_Rockets), cpair(Dallas_Mavericks, Oklahoma_City_Thunder), cpair(Dallas_Mavericks, San_Antonio_Spurs),
-                                                         cpair(Denver_Nuggets, Los_Angeles_Lakers), cpair(Denver_Nuggets, Minnesota_Timberwolves), cpair(Denver_Nuggets, Oklahoma_City_Thunder), cpair(Denver_Nuggets, Phoenix_Suns), cpair(Denver_Nuggets, Utah_Jazz),
-                                                         cpair(Detroit_Pistons, Minnesota_Timberwolves), cpair(Detroit_Pistons, New_York_Knicks), cpair(Detroit_Pistons, Toronto_Raptors),
-                                                         cpair(Golden_State_Warriors, Los_Angeles_Lakers), cpair(Golden_State_Warriors, Sacramento_Kings),
-                                                         cpair(Houston_Rockets, New_Orleans_Pelicans), cpair(Houston_Rockets, San_Antonio_Spurs),
-                                                         cpair(Los_Angeles_Clippers, Los_Angeles_Lakers), cpair(Los_Angeles_Clippers, Denver_Nuggets), cpair(Los_Angeles_Clippers, Golden_State_Warriors), cpair(Los_Angeles_Clippers, Phoenix_Suns), cpair(Los_Angeles_Clippers, Sacramento_Kings), cpair(Los_Angeles_Clippers, Utah_Jazz),
-                                                         cpair(Los_Angeles_Lakers, Phoenix_Suns), cpair(Los_Angeles_Clippers, Sacramento_Kings), cpair(Los_Angeles_Lakers, Utah_Jazz),
-                                                         cpair(Memphis_Grizzlies, New_Orleans_Pelicans), cpair(Memphis_Grizzlies, Oklahoma_City_Thunder),
-                                                         cpair(Miami_Heat, Charlotte_Hornets), cpair(Miami_Heat, New_Orleans_Pelicans), cpair(Miami_Heat, Orlando_Magic),
-                                                         cpair(Milwaukee_Bucks, Minnesota_Timberwolves),
-                                                         cpair(Minnesota_Timberwolves, Portland_Trail_Blazers),
-                                                         cpair(New_York_Knicks, Toronto_Raptors),
-                                                         cpair(Oklahoma_City_Thunder, Denver_Nuggets),
-                                                         cpair(Philadelphia_76ers, Washington_Wizards),
-                                                         cpair(Portland_Trail_Blazers, Sacramento_Kings), cpair(Portland_Trail_Blazers, Utah_Jazz),
-                                                         cpair(Toronto_Raptors, New_York_Knicks),
-                                                         cpair(Washington_Wizards, Cleveland_Cavaliers)
-                                                 }};
+        cpair(Atlanta_Hawks, Charlotte_Hornets), cpair(Atlanta_Hawks, Memphis_Grizzlies), cpair(Atlanta_Hawks, New_Orleans_Pelicans), cpair(Atlanta_Hawks, Orlando_Magic),
+        cpair(Boston_Celtics, New_York_Knicks), cpair(Boston_Celtics, Toronto_Raptors),
+        cpair(Brooklyn_Nets, New_York_Knicks), cpair(Brooklyn_Nets, Philadelphia_76ers),
+        cpair(Charlotte_Hornets, Indiana_Pacers), cpair(Charlotte_Hornets, Miami_Heat), cpair(Charlotte_Hornets, Washington_Wizards),
+        cpair(Chicago_Bulls, Detroit_Pistons), cpair(Chicago_Bulls, Indiana_Pacers), cpair(Chicago_Bulls, Milwaukee_Bucks),
+        cpair(Cleveland_Cavaliers, Detroit_Pistons), cpair(Cleveland_Cavaliers, Indiana_Pacers), cpair(Cleveland_Cavaliers, Philadelphia_76ers), cpair(Cleveland_Cavaliers, Washington_Wizards),
+        cpair(Dallas_Mavericks, Houston_Rockets), cpair(Dallas_Mavericks, Oklahoma_City_Thunder), cpair(Dallas_Mavericks, San_Antonio_Spurs),
+        cpair(Denver_Nuggets, Los_Angeles_Lakers), cpair(Denver_Nuggets, Minnesota_Timberwolves), cpair(Denver_Nuggets, Oklahoma_City_Thunder), cpair(Denver_Nuggets, Phoenix_Suns), cpair(Denver_Nuggets, Utah_Jazz),
+        cpair(Detroit_Pistons, Minnesota_Timberwolves), cpair(Detroit_Pistons, New_York_Knicks), cpair(Detroit_Pistons, Toronto_Raptors),
+        cpair(Golden_State_Warriors, Los_Angeles_Lakers), cpair(Golden_State_Warriors, Sacramento_Kings),
+        cpair(Houston_Rockets, New_Orleans_Pelicans), cpair(Houston_Rockets, San_Antonio_Spurs),
+        cpair(Los_Angeles_Clippers, Los_Angeles_Lakers), cpair(Los_Angeles_Clippers, Denver_Nuggets), cpair(Los_Angeles_Clippers, Golden_State_Warriors), cpair(Los_Angeles_Clippers, Phoenix_Suns), cpair(Los_Angeles_Clippers, Sacramento_Kings), cpair(Los_Angeles_Clippers, Utah_Jazz),
+        cpair(Los_Angeles_Lakers, Phoenix_Suns), cpair(Los_Angeles_Lakers, Utah_Jazz),
+        cpair(Memphis_Grizzlies, New_Orleans_Pelicans), cpair(Memphis_Grizzlies, Oklahoma_City_Thunder),
+        cpair(Miami_Heat, New_Orleans_Pelicans), cpair(Miami_Heat, Orlando_Magic),
+        cpair(Milwaukee_Bucks, Minnesota_Timberwolves),
+        cpair(Minnesota_Timberwolves, Portland_Trail_Blazers),
+        cpair(New_York_Knicks, Toronto_Raptors),
+        cpair(Oklahoma_City_Thunder, Denver_Nuggets),
+        cpair(Philadelphia_76ers, Washington_Wizards),
+        cpair(Portland_Trail_Blazers, Sacramento_Kings), cpair(Portland_Trail_Blazers, Utah_Jazz),
+    }};
 
 
     g = {30};
@@ -87,6 +85,8 @@ double manage_teams::minimum_spanning_tree() {
 
 
 double manage_teams::depth_first_search(Teams team) {
+    travelPlan.clear();
+
     Graph dg = g;
 
     Iter ei, ei_end;
@@ -126,6 +126,7 @@ double manage_teams::depth_first_search(Teams team) {
             std::cout << "(" << dg[source(*next, dg)].team
                       << ", " << dg[target(*next, dg)].team << ")";
             std::cout << std::endl;
+            travelPlan.push_back(dg[source(*next, dg)]);
             visitedCities++;
             distanceSum += dg[*next].distance;
             std::cout << std::endl;
@@ -139,7 +140,6 @@ double manage_teams::depth_first_search(Teams team) {
             else if (!stack.empty()) {
                 stack.pop();
                 curr = stack.top();
-//                std::cout << "-- Backtracking to " << dg[curr].team << "...\n" << std::endl;
             }
         }
     }
@@ -196,4 +196,8 @@ double manage_teams::breadth_first_search(Teams team) {
     }
 
     return distanceSum;
+}
+
+std::deque<City> manage_teams::getTravelPlan() {
+    return travelPlan;
 }
