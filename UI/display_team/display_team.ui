@@ -94,6 +94,11 @@
               <widget class="QComboBox" name="combo_sort">
                <item>
                 <property name="text">
+                 <string>None</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
                  <string>Team Name</string>
                 </property>
                </item>
@@ -150,6 +155,11 @@
              </item>
              <item row="1" column="0">
               <widget class="QComboBox" name="division_comboBox">
+               <item>
+                <property name="text">
+                 <string>None</string>
+                </property>
+               </item>
                <item>
                 <property name="text">
                  <string>Atlantic</string>
@@ -216,7 +226,7 @@
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout">
                <item>
-                <widget class="QPushButton" name="push_plan">
+                <widget class="QPushButton" name="clear_plan">
                  <property name="font">
                   <font>
                    <pointsize>12</pointsize>
@@ -225,7 +235,7 @@
                   </font>
                  </property>
                  <property name="text">
-                  <string>Trip</string>
+                  <string>Clear</string>
                  </property>
                 </widget>
                </item>
