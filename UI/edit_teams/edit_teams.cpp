@@ -84,6 +84,15 @@ void edit_teams::on_load_teams_button_clicked()
     qry.exec();
     qry.prepare("INSERT INTO Distances Values('Seattle Supersonics', 'Seattle Stadium', 'Sacramento Kings', 752.4)");
     qry.exec();
+
+    qry.prepare("INSERT INTO Souvenirs VALUES ('Seattle Supersonics', 'Autographed Basketball', 49.99);");
+    qry.exec();
+    qry.prepare("INSERT INTO Souvenirs VALUES ('Seattle Supersonics', 'Team pennant', 17.99);");
+    qry.exec();
+    qry.prepare("INSERT INTO Souvenirs VALUES ('Seattle Supersonics', 'Team picture', 29.89);");
+    qry.exec();
+    qry.prepare("INSERT INTO Souvenirs VALUES ('Seattle Supersonics', 'Team jersey', 179.79);");
+    qry.exec();
 }
 
 void edit_teams::on_load_table_button_clicked()
