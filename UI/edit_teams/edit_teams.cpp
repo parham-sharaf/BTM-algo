@@ -58,7 +58,6 @@ void edit_teams::on_city_clicked()
 
 void edit_teams::on_load_teams_button_clicked()
 {
-    std::cout << "here" << std::endl;
     QSqlQuery qry;
     QString notify;
     qry.prepare("INSERT into GeneralInfo( TeamName, ArenaName, Conference, Division, Location, StadiumCapacity, JoinedLeague, Coach) values (:TeamName,:ArenaName,:Conference, :Division,:Location,:StadiumCapacity,:JoinedLeague,:Coach)");
@@ -74,8 +73,17 @@ void edit_teams::on_load_teams_button_clicked()
     if(qry.exec())
     {
         QMessageBox::critical(this, "Success!", "Data was successfully read!");
+        isNewTeamAdded = true;
     }
 
+    qry.prepare("INSERT INTO Distances Values('Portland Trail Blazers', 'Moda Center', 'Seattle Supersonics', 173.8)");
+    qry.exec();
+    qry.prepare("INSERT INTO Distances Values('Sacramento Kings', 'Golden 1 Center', 'Seattle Supersonics', 752.4)");
+    qry.exec();
+    qry.prepare("INSERT INTO Distances Values('Seattle Supersonics', 'Seattle Stadium', 'Portland Trail Blazers', 173.8)");
+    qry.exec();
+    qry.prepare("INSERT INTO Distances Values('Seattle Supersonics', 'Seattle Stadium', 'Sacramento Kings', 752.4)");
+    qry.exec();
 }
 
 void edit_teams::on_load_table_button_clicked()

@@ -45,14 +45,18 @@ public:
 
 
     void initialize();
+    std::vector<std::string> getTeamNames();
     double shortest_path(int initial, int target);
     double minimum_spanning_tree();
     double depth_first_search(Teams team);
     double breadth_first_search(Teams team);
     std::deque<City> getTravelPlan();
     double createCustomPlan(const std::vector<std::string>&, bool order);
+    void addNewVertex();
 
-    const char* teamNames[30] {
+private:
+
+    std::vector<std::string> teamNames {
             "Atlanta Hawks", "Boston Celtics", "Brooklyn Nets", "Charlotte Hornets",
             "Chicago Bulls", "Cleveland Cavaliers", "Dallas Mavericks", "Denver Nuggets",
             "Detroit Pistons", "Golden State Warriors", "Houston Rockets", "Indiana Pacers",
@@ -62,7 +66,7 @@ public:
             "Portland Trail Blazers", "Sacramento Kings", "San Antonio Spurs", "Toronto Raptors",
             "Utah Jazz", "Washington Wizards"
     };
-private:
+
     typedef std::pair<Teams, Teams> cpair;
 
     std::array<std::pair<int, int>, 56> edges = {{
