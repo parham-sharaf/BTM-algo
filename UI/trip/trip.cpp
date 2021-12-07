@@ -58,7 +58,8 @@ trip::~trip()
 
 void trip::on_pushButton_clicked()
 {
-    purchase_souvenirs souvenir;
+    purchase_souvenirs souvenir(myTeams.getTravelPlan());
+//    souvenir.setPlan(myTeams.getTravelPlan());
     souvenir.setModal(true);
     souvenir.exec();
 }

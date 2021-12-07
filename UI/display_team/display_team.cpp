@@ -47,7 +47,7 @@ display_team::display_team(QWidget *parent) :
     modal->setHeaderData(6, Qt::Horizontal, QObject::tr("Coach"));
 
     connect(ui->combo_sort, SIGNAL(currentTextChanged(QString)), this, SLOT(on_combo_sort_activated(QString)));
-    connect(ui->division_comboBox, SIGNAL(isChecked(QString)), this, SLOT(on_division_comboBox_activated(QString)));
+    connect(ui->division_comboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(on_division_comboBox_activated(QString)));
     connect(ui->combo_team, SIGNAL(currentTextChanged(QString)), this, SLOT(on_combo_team_activated(QString)));
     connect(ui->team_name_checkBox, SIGNAL(stateChanged(int)), this, SLOT(on_team_name_checkBox_state_changed()));
     connect(ui->arena_checkBox, SIGNAL(stateChanged(int)), this, SLOT(on_arena_checkBox_state_changed()));
@@ -190,6 +190,7 @@ void display_team::on_division_comboBox_activated(const QString &arg1)
     std::string div = ui->division_comboBox->currentText().toStdString();
 
     std::string sqlAdd = " AND Division = '"+div+"'";
+    std::cout << sql << std::endl;
     qry->prepare((sql + sqlAdd).c_str());
 
     qry->exec();

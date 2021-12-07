@@ -4,15 +4,17 @@
 #include "../display_purchases/display_purchases.h"
 
 
-purchase_souvenirs::purchase_souvenirs(QWidget *parent) :
+
+purchase_souvenirs::purchase_souvenirs(const std::deque<City>& myTeam, QWidget *parent):
     QDialog(parent),
     ui(new Ui::purchase_souvenirs)
 {
-    ui->setupUi(this);
+    for (const auto& item: myTeam) {
+        std::cout << item.team << std::endl;
+        teams.push(QString::fromStdString(item.team));
+    }
 
-    teams.push_back("Boston Celtics");
-    teams.push_back("Chicago Bulls");
-    teams.push_back("New York Knicks");
+    ui->setupUi(this);
 
     // create new table for Purchases
     login conn;
@@ -30,6 +32,7 @@ purchase_souvenirs::purchase_souvenirs(QWidget *parent) :
     localNumSouv = 0;
 }
 
+
 purchase_souvenirs::~purchase_souvenirs()
 {
     delete ui;
@@ -37,9 +40,14 @@ purchase_souvenirs::~purchase_souvenirs()
 
 void purchase_souvenirs::on_purchase_souvenirs_2_clicked()
 {
-    QString teamName = teams.front();   //current team being visited
+    //current team being visited
+    QString teamName = teams.front();
     QString souvenir = ui->comboBox_souvenirs->currentText();
     QString quantityString = ui->spinBox_souvenirs->text();
+
+    if (ui->spinBox_souvenirs->text() == "0") {
+        quantityString = "0";
+    }
     //int quantity = quantityString.toInt();
     QString priceString;
     //QString price;
@@ -49,7 +57,7 @@ void purchase_souvenirs::on_purchase_souvenirs_2_clicked()
     conn1.connOpen();
     QSqlQuery query1;
 
-    query1.exec("select * from Souvenirs where SouvenirName = '"+souvenir+"' AND TeamName = '"+teamName+"'");
+    query1.exec("SELECT * FROM Souvenirs WHERE SouvenirName = '"+souvenir+"' AND TeamName = '"+teamName+"'");
 
     while(query1.next())
     {
@@ -84,9 +92,11 @@ void purchase_souvenirs::display_souvenirs()
     modal->setHeaderData(0, Qt::Horizontal, QObject::tr("Souvenir"));
     modal->setHeaderData(0, Qt::Horizontal, QObject::tr("Price"));
 
-    qry->prepare("SELECT SouvenirName, Price from Souvenirs where TeamName='"+teamName+"'");
+    qry->prepare("SELECT SouvenirName, Price FROM Souvenirs where TeamName='"+teamName+"'");
     qry->exec();
     modal->setQuery(*qry);
+    modal->setHeaderData(0, Qt::Horizontal, QObject::tr("Souvenir Name"));
+    modal->setHeaderData(0, Qt::Horizontal, QObject::tr("Price"));
     ui->tableView_souvenirs->setModel(modal);
     conn.connClose();
 
@@ -98,7 +108,7 @@ void purchase_souvenirs::display_souvenirs()
 
     QSqlQuery* qry2 = new QSqlQuery(conn2.informationDb);
 
-    qry2->exec("select SouvenirName FROM Souvenirs where TeamName='"+teamName+"'");
+    qry2->exec("SELECT SouvenirName FROM Souvenirs WHERE TeamName='"+teamName+"'");
 
     //qry->exec();
     modal2->setQuery(*qry2);
@@ -115,7 +125,7 @@ void purchase_souvenirs::on_next_team_clicked()
 
     qDebug() << "Checking local variables" << localTotalString << localSuvString;
 
-    teams.pop_front();      // move to next team
+    teams.pop();      // move to next team
 
     login conn;
     conn.connOpen();
@@ -163,15 +173,17 @@ void purchase_souvenirs::addToDatabase(QString teamName, QString souvenir, QStri
     double total = 0;
     QString totalString;
 
+
     priceDouble = price.toDouble();
     quantityInt = quantity.toInt();
 
-    total = priceDouble*quantityInt;
+    if (quantity != "0") {
+        total = priceDouble * quantityInt;
 
-    localNumSouv+=quantityInt;
-    localTotal+=total;
-    grandTotal+=total;
-
+        localNumSouv += quantityInt;
+        localTotal += total;
+        grandTotal += total;
+    }
 
         ui->label_spent_local->setNum('$' + localTotal);
         ui->label_totalEverywhere->setNum('$' + grandTotal);
