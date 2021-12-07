@@ -14,66 +14,37 @@
    <string>Dialog</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="1">
+    <widget class="QLabel" name="label_logo">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>:/resources/logo.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLabel" name="labelTeamS">
+     <property name="font">
+      <font>
+       <pointsize>18</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
    <item row="2" column="0">
     <layout class="QVBoxLayout" name="verticalLayout_7">
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
         <layout class="QGridLayout" name="gridLayout_3">
-         <item row="0" column="0">
-          <layout class="QVBoxLayout" name="verticalLayout_8">
-           <property name="spacing">
-            <number>2</number>
-           </property>
-           <property name="sizeConstraint">
-            <enum>QLayout::SetMinimumSize</enum>
-           </property>
-           <item>
-            <widget class="QGroupBox" name="groupBox">
-             <property name="title">
-              <string>GroupBox</string>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_9">
-              <item>
-               <widget class="QCheckBox" name="team_name_checkBox">
-                <property name="text">
-                 <string>Team</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="arena_checkBox">
-                <property name="text">
-                 <string>Arena</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="capacity_checkBox">
-                <property name="text">
-                 <string>Capacity</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="year_checkBox">
-                <property name="text">
-                 <string>Year Joined</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="coach_checkBox">
-                <property name="text">
-                 <string>Coach</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-          </layout>
-         </item>
          <item row="1" column="0">
           <layout class="QVBoxLayout" name="verticalLayout_6">
            <item>
@@ -201,7 +172,14 @@
                <item>
                 <widget class="QLabel" name="label_dbstatus">
                  <property name="text">
-                  <string>status :)</string>
+                  <string>Total Capacity:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="totalTeamCapacityLabel">
+                 <property name="text">
+                  <string/>
                  </property>
                 </widget>
                </item>
@@ -257,6 +235,60 @@
            </item>
           </layout>
          </item>
+         <item row="0" column="0">
+          <layout class="QVBoxLayout" name="verticalLayout_8">
+           <property name="spacing">
+            <number>2</number>
+           </property>
+           <property name="sizeConstraint">
+            <enum>QLayout::SetMinimumSize</enum>
+           </property>
+           <item>
+            <widget class="QGroupBox" name="groupBox">
+             <property name="title">
+              <string>Category</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_9">
+              <item>
+               <widget class="QCheckBox" name="team_name_checkBox">
+                <property name="text">
+                 <string>Team</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="arena_checkBox">
+                <property name="text">
+                 <string>Arena</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="capacity_checkBox">
+                <property name="text">
+                 <string>Capacity</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="year_checkBox">
+                <property name="text">
+                 <string>Year Joined</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="coach_checkBox">
+                <property name="text">
+                 <string>Coach</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </item>
         </layout>
        </item>
        <item>
@@ -289,31 +321,6 @@
       </layout>
      </item>
     </layout>
-   </item>
-   <item row="0" column="1">
-    <widget class="QLabel" name="labelTeamS">
-     <property name="font">
-      <font>
-       <pointsize>18</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="1">
-    <widget class="QLabel" name="label_logo">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap>:/resources/logo.png</pixmap>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
-    </widget>
    </item>
   </layout>
  </widget>

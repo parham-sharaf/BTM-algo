@@ -11,6 +11,7 @@
 #include <QDebug>
 #include <QSqlQueryModel>
 #include <QFileInfo>
+static bool isNewTeamAdded;
 
 namespace Ui
 {

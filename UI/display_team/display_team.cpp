@@ -97,11 +97,6 @@ void display_team::on_combo_sort_activated(const QString &arg1)
 
     int entry = 0;
     sql = "SELECT ";
-//    if (ui->team_name_checkBox->checkState() == Qt::Checked) sql+= "TeamName, ";
-//    if (ui->arena_checkBox->checkState() == Qt::Checked) sql += "ArenaName, ";
-//    if (ui->capacity_checkBox->checkState() == Qt::Checked) sql += "StadiumCapacity, ";
-//    if (ui->year_checkBox->checkState() == Qt::Checked) sql += "JoinedLeague, ";
-//    if (ui->coach_checkBox->checkState() == Qt::Checked) sql += "Coach, ";
     for (const auto& item: headers) {
         sql += item;
     }
@@ -270,6 +265,7 @@ void display_team::on_clear_plan_clicked()
     ui->combo_sort->setCurrentIndex(0);
     ui->division_comboBox->setCurrentIndex(0);
     ui->combo_team->setCurrentIndex(0);
+    ui->totalTeamCapacityLabel->setText("-");
     headers.clear();
 }
 
@@ -282,6 +278,18 @@ void display_team::on_arena_checkBox_state_changed() {
 
 void display_team::on_capacity_checkBox_state_changed() {
     if (ui->capacity_checkBox->checkState() == Qt::Checked) headers.emplace_back("StadiumCapacity, ");
+    int totalCap = 0;
+    login conn;
+    conn.connOpen();
+    QSqlQuery* qry = new QSqlQuery(conn.informationDb);
+    qry->prepare("SELECT * FROM GeneralInfo");
+    qry->exec();
+    while (qry->next()) {
+        totalCap += qry->value(6).toInt();
+    }
+    conn.connClose();
+    ui->totalTeamCapacityLabel->setText(QString::number(totalCap));
+
 }
 void display_team::on_year_checkBox_state_changed() {
     if (ui->year_checkBox->checkState() == Qt::Checked) headers.emplace_back("JoinedLeague, ");

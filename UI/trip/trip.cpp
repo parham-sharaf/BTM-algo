@@ -10,14 +10,38 @@ trip::trip(QWidget *parent) :
     ui(new Ui::trip)
 {
     ui->setupUi(this);
-    myTeams.initialize();
+    scene = new QGraphicsScene(this);
+    ui->graphicsView->setScene(scene);
+    this->showMaximized();
 
     login conn;
 
-    QSqlQueryModel * modal=new QSqlQueryModel();
-
     conn.connOpen();
-    QSqlQuery* qry = new QSqlQuery(conn.informationDb);
+    QSqlQuery* qry=new QSqlQuery(conn.informationDb);
+    qry->prepare("SELECT COUNT(*) FROM GeneralInfo");
+    qry->exec();
+    int teamCount;
+    if (qry->next()) teamCount = qry->value(0).toInt();
+    myTeams.initialize();
+
+    if (teamCount > 30) {
+        pix.load("/home/parham/Personal/School/Saddleback/2021 Fall/CS 1D/Project-2-CS1D/images/added.png");
+        scene->addPixmap(pix);
+        myTeams.addNewVertex();
+//        QTreeWidgetItem* newTeam = new QTreeWidgetItem();
+//        newTeam->setText(0, "Seattle Supersonics");
+//        newTeam->setCheckState(0, Qt::Unchecked);
+//        connect(ui->teamsTreeWidget, SIGNAL(itemChanged(QTreeWidgetItem*, int)), this, SLOT(itemChanged(QTreeWidgetItem*, int)), Qt::UniqueConnection);
+//        ui->teamsTreeWidget->addTopLevelItem(newTeam);
+    }
+    else {
+        pix.load("/home/parham/Personal/School/Saddleback/2021 Fall/CS 1D/Project-2-CS1D/images/original.png");
+        scene->addPixmap(pix);
+    }
+
+    QSqlQueryModel * modal = new QSqlQueryModel();
+
+    qry = new QSqlQuery(conn.informationDb);
 
     qry->prepare("SELECT DISTINCT BeginningTeamName FROM Distances");
     qry->exec();
@@ -31,24 +55,18 @@ trip::trip(QWidget *parent) :
     connect(ui->dfs_pushButton, SIGNAL(clicked()), this, SLOT(on_dfs_pushButton_clicked()), Qt::UniqueConnection);
     connect(ui->bfs_pushButton, SIGNAL(clicked()), this, SLOT(on_bfs_pushButton_clicked()), Qt::UniqueConnection);
     connect(ui->done_pushButton, SIGNAL(clicked()), this, SLOT(on_done_pushButton_clicked()), Qt::UniqueConnection);
-    scene = new QGraphicsScene(this);
-    ui->graphicsView->setScene(scene);
-//    pix.load("/home/parham/Personal/School/Saddleback/2021 Fall/CS 1D/Project-2-CS1D/UI/teams.png");
-//    scene->addPixmap(pix);
+    connect(ui->clear_pushButton, SIGNAL(clicked()), this, SLOT(on_clear_pushButton_clicked()), Qt::UniqueConnection);
 
-    map *Hawks = new map("Hawks", 10, 10);
-    scene->addItem(Hawks);
-
-
-    for (auto team: myTeams.teamNames) {
+    for (const auto& team: myTeams.getTeamNames()) {
         QTreeWidgetItem* newTeam = new QTreeWidgetItem();
-        newTeam->setText(0, team);
+        newTeam->setText(0, team.c_str());
         newTeam->setCheckState(0, Qt::Unchecked);
         connect(ui->teamsTreeWidget, SIGNAL(itemChanged(QTreeWidgetItem*, int)), this, SLOT(itemChanged(QTreeWidgetItem*, int)), Qt::UniqueConnection);
         ui->teamsTreeWidget->addTopLevelItem(newTeam);
     }
 
     isInOrder = false;
+    conn.close();
 }
 
 trip::~trip()
@@ -125,6 +143,20 @@ void trip::on_done_pushButton_clicked()
 
 void trip::on_order_radioButton_clicked()
 {
-    isInOrder = true;
+    isInOrder = !isInOrder;
+}
+
+
+void trip::on_clear_pushButton_clicked()
+{
+    ui->total_distance_label->setText("0.00");
+    QTreeWidgetItemIterator it(ui->teamsTreeWidget);
+    while (*it) {
+        (*it)->setCheckState(0, Qt::Unchecked);
+        ++it;
+    }
+
+    isInOrder = false;
+    ui->order_radioButton->setChecked(false);
 }
 

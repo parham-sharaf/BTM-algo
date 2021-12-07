@@ -38,6 +38,8 @@ private slots:
 
     void on_order_radioButton_clicked();
 
+    void on_clear_pushButton_clicked();
+
 private:
     Ui::trip *ui;
     manage_teams myTeams;

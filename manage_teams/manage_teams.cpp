@@ -21,7 +21,7 @@ double manage_teams::shortest_path(int initial, int target) {
     int p = initial;
     double distanceSum = 0;
 
-    boost::array<int, 30> directions{};
+    boost::array<int, 31> directions{};
     boost::dijkstra_shortest_paths(g, target,
                                    boost::predecessor_map(directions.begin()).
                                            weight_map(boost::get(&Distance::distance, g)));
@@ -40,7 +40,7 @@ double manage_teams::minimum_spanning_tree() {
     typedef boost::graph_traits < Graph >::edge_descriptor Edge;
     std::vector < Edge > spanning_tree;
 
-    boost::array<int, 30> directions{};
+    boost::array<int, 31> directions{};
     kruskal_minimum_spanning_tree(g, std::back_inserter(spanning_tree),
                                   boost::predecessor_map(directions.begin()).
                                           weight_map(boost::get(&Distance::distance, g)));
@@ -235,4 +235,21 @@ double manage_teams::createCustomPlan(const std::vector<std::string>& list, bool
         }
     }
     return distanceSum;
+}
+
+void manage_teams::addNewVertex() {
+    Vertex v1 = boost::add_vertex(g);
+    g[v1].team = "Seattle Supersonics";
+
+    auto e1 = boost::add_edge(Sacramento_Kings, v1, g).first;
+    g[e1].distance = 752.4;
+
+    auto e2 = boost::add_edge(Portland_Trail_Blazers, v1, g).first;
+    g[e2].distance = 173.8;
+    teamNames.emplace_back("Seattle Supersonics");
+
+}
+
+std::vector<std::string> manage_teams::getTeamNames() {
+    return teamNames;
 }
