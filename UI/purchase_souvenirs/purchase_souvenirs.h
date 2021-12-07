@@ -3,9 +3,11 @@
 
 #include "../login/login.h"
 #include "../mainwindow/mainwindow.h"
-
+#include "../../manage_teams/manage_teams.h"
 #include <QVector>
 #include <QDialog>
+#include <queue>
+#include <deque>
 
 namespace Ui {
 class purchase_souvenirs;
@@ -16,7 +18,7 @@ class purchase_souvenirs : public QDialog
     Q_OBJECT
 
 public:
-    explicit purchase_souvenirs(QWidget *parent = nullptr);
+    explicit purchase_souvenirs(const std::deque<City>& myTeam, QWidget *parent = nullptr);
     ~purchase_souvenirs();
     double grandTotal;
     double localTotal;
@@ -35,7 +37,7 @@ private slots:
 
 private:
     Ui::purchase_souvenirs *ui;
-    QVector<QString>teams;
+    std::queue<QString> teams;
 };
 
 #endif // PURCHASE_SOUVENIRS_H
