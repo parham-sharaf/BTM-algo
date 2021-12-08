@@ -7,6 +7,17 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    // Stuff for Ui Prettification
+    QPixmap bkgnd("./images/bball_banner.png");
+    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Window, bkgnd);
+    this->setPalette(palette);
+
+    this->setFixedSize(800, 600);
+
+    this->setWindowTitle("Main Menu");
 }
 
 MainWindow::~MainWindow()

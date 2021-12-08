@@ -67,6 +67,14 @@ trip::trip(QWidget *parent) :
 
     isInOrder = false;
     conn.close();
+
+    QPixmap bkgnd("./images/bball_sadBoys.png");
+    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Window, bkgnd);
+    this->setPalette(palette);
+
+    this->setWindowTitle("Trip");
 }
 
 trip::~trip()

@@ -30,6 +30,12 @@ purchase_souvenirs::purchase_souvenirs(const std::deque<City>& myTeam, QWidget *
     grandTotal = 0;
     localTotal = 0;
     localNumSouv = 0;
+
+    QPixmap bkgnd("./images/bball_ouchHOT.png");
+    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Window, bkgnd);
+    this->setPalette(palette);
 }
 
 

@@ -1,17 +1,13 @@
 #include "edit_teams.h"
 #include "ui_edit_teams.h"
 #include <iostream>
-#include <QtSql>
 #include <QDebug>
 
-#include <QFileInfo>
 #include <string>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
 #include <QMessageBox>
-#include <QFileDialog>
-#include <QFile>
-#include <QDebug>
+
 #include "../login/login.h"
 
 edit_teams::edit_teams(QWidget *parent) : QDialog(parent), ui(new Ui::edit_teams)
@@ -52,6 +48,13 @@ edit_teams::edit_teams(QWidget *parent) : QDialog(parent), ui(new Ui::edit_teams
     connect(ui->teamCombo, SIGNAL(currentTextChanged(const QString &)), this, SLOT(on_teamCombo_currentIndexChanged(const QString &)));
     connect(ui->arenaCombo, SIGNAL(currentTextChanged(const QString &)), this, SLOT(on_arenaCombo_currentTextChanged(const QString &)));
     connect(ui->changeArenaButton, SIGNAL(clicked()), this, SLOT(on_pushButton_clicked()));
+    QPixmap bkgnd("./images/bball_lady.png");
+    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Window, bkgnd);
+    this->setPalette(palette);
+
+    this->showFullScreen();
 }
 
 edit_teams::~edit_teams()
