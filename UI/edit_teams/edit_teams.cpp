@@ -26,7 +26,6 @@ edit_teams::edit_teams(QWidget *parent) : QDialog(parent), ui(new Ui::edit_teams
     QSqlQuery* qry = new QSqlQuery(conn.informationDb);
 
     qry->prepare("Select TeamName, ArenaName, Conference, Division, Location, StadiumCapacity, JoinedLeague, Coach from GeneralInfo");
-    //qry->prepare("Select Conference, Division, TeamName, Location, Arena, JoinedLeague, Coach from GISdata");
     qry->exec();
 
     ui->tableView->verticalHeader()->setHidden(true);
@@ -34,6 +33,25 @@ edit_teams::edit_teams(QWidget *parent) : QDialog(parent), ui(new Ui::edit_teams
     ui->tableView->resizeColumnsToContents();
     ui->tableView->setModel(modal);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    ui->teamCombo->addItem("None");
+    ui->arenaCombo->addItem("None");
+
+    qry->prepare("SELECT TeamName FROM GeneralInfo ORDER BY teamName ASC");
+    qry->exec();
+    while (qry->next()) {
+        ui->teamCombo->addItem(qry->value(0).toString());
+    }
+
+    qry->prepare("SELECT ArenaName FROM GeneralInfo ORDER BY ArenaName ASC");
+    qry->exec();
+    while (qry->next()) {
+        ui->arenaCombo->addItem(qry->value(0).toString());
+    }
+
+    connect(ui->teamCombo, SIGNAL(currentTextChanged(const QString &)), this, SLOT(on_teamCombo_currentIndexChanged(const QString &)));
+    connect(ui->arenaCombo, SIGNAL(currentTextChanged(const QString &)), this, SLOT(on_arenaCombo_currentTextChanged(const QString &)));
+    connect(ui->changeArenaButton, SIGNAL(clicked()), this, SLOT(on_pushButton_clicked()));
 }
 
 edit_teams::~edit_teams()
@@ -44,17 +62,6 @@ edit_teams::~edit_teams()
 void edit_teams::on_city_clicked()
 {}
 
-//void edit_teams::on_load_table_clicked()
-//{
-//    login obj;
-//    QSqlQueryModel * model=new QSqlQueryModel();
-
-//    QSqlQuery * qry=new QSqlQuery(obj.mydb);
-//    qry->prepare("Select TeamName, ArenaName, Conference, Division, StadiumCapacity, JoinedLeague, Coach from GISdata");
-//    qry->exec();
-//    model->setQuery(*qry);
-//    ui->tableView->setModel(model);
-//}
 
 void edit_teams::on_load_teams_button_clicked()
 {
@@ -123,3 +130,39 @@ void edit_teams::on_revert_changes_button_clicked()
         QMessageBox::critical(this,tr("Uh Oh"), tr("Error"));
     }
 }
+
+void edit_teams::on_teamCombo_currentIndexChanged(const QString &arg1)
+{
+    teamName = ui->teamCombo->currentText();
+}
+
+
+void edit_teams::on_arenaCombo_currentTextChanged(const QString &arg1)
+{
+    arenaName = ui->arenaCombo->currentText();
+}
+
+
+void edit_teams::on_changeArenaButton_clicked()
+{
+    if (teamName == "None") {
+        QMessageBox::critical(this, "Error!", "Update Team Name");
+        return;
+    }
+    if (arenaName == "None") {
+        QMessageBox::critical(this, "Error!", "Update Arena Name");
+        return;
+    }
+    login conn;
+    conn.connOpen();
+    QSqlQuery* qry = new QSqlQuery(conn.informationDb);
+    capacity = ui->capacitySpinbox->value();
+    std::cout << teamName.toStdString() << std::endl;
+    qry->prepare("UPDATE GeneralInfo SET ArenaName = '" + arenaName + "', StadiumCapacity = " + QString::number(capacity) + " WHERE TeamName = '" + teamName + "';");
+    qry->exec();
+    if(qry->exec())
+    {
+        QMessageBox::critical(this, "Success!", "Updated Arena information!");
+    }
+}
+

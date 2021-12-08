@@ -209,9 +209,9 @@ void purchase_souvenirs::addToDatabase(QString teamName, QString souvenir, QStri
     QSqlQueryModel *modal2 = new QSqlQueryModel;
     QSqlQuery* qry2 = new QSqlQuery(conn.informationDb);
     modal2->setHeaderData(0, Qt::Horizontal, QObject::tr("Souvenir"));
-    modal2->setHeaderData(0, Qt::Horizontal, QObject::tr("Price"));
+    modal2->setHeaderData(1, Qt::Horizontal, QObject::tr("Price"));
 
-    qry2->prepare("SELECT purchaseSouvenir, purchaseQuan from Purchases where purchaseTeam = '"+teamName+"'");
+    qry2->prepare("SELECT purchaseSouvenir, purchaseQuan FROM Purchases WHERE purchaseTeam = '"+teamName+"'");
     qry2->exec();
     modal2->setQuery(*qry2);
     ui->tableView_purchased->setModel(modal2);

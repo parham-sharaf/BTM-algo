@@ -52,6 +52,19 @@
     <string>Edit Souveniers </string>
    </property>
   </widget>
+  <widget class="QPushButton" name="Edit_Arena_Button">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>330</y>
+     <width>351</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Edit Arena</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
