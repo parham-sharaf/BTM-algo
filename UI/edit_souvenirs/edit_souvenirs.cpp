@@ -35,8 +35,11 @@ edit_souvenirs::edit_souvenirs(QWidget *parent) :
     QVector<QString> string;
     QString tempString;
 
-    qry->prepare("SELECT DISTINCT TeamName FROM Souvenirs");
+    qry->prepare("SELECT DISTINCT TeamName FROM Souvenirs ORDER BY TeamName");
     qry->exec();
+
+    ui->team_box2->addItem("None");
+    ui->team_box1->addItem("None");
 
     while (qry->next())
     {

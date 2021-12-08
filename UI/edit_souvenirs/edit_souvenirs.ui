@@ -28,7 +28,7 @@
        <item>
         <widget class="QFrame" name="frame">
          <property name="styleSheet">
-          <string notr="true">background-color:#fbf07b
+          <string notr="true">background-color:#fafd0f
 </string>
          </property>
          <property name="frameShape">

@@ -3,7 +3,6 @@
 
 #include <QDialog>
 #include "../../manage_teams/manage_teams.h"
-#include "../../map/map.h"
 #include <QGraphicsScene>
 #include <QGraphicsRectItem>
 #include <QCheckBox>

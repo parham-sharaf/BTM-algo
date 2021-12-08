@@ -15,7 +15,7 @@ display_team::display_team(QWidget *parent) :
 
     conn.connOpen();
     QSqlQuery* qry=new QSqlQuery(conn.informationDb);
-    qry->prepare("Select TeamName, ArenaName, Conference, Division, StadiumCapacity, JoinedLeague, Coach from GeneralInfo");
+    qry->prepare("SELECT TeamName, ArenaName, Conference, Division, StadiumCapacity, JoinedLeague, Coach FROM GeneralInfo ORDER BY TeamName");
     qry->exec();
 
     ui->tableView->verticalHeader()->setHidden(true);
@@ -31,10 +31,14 @@ display_team::display_team(QWidget *parent) :
 
     QSqlQuery* qry1 = new QSqlQuery(conn1.informationDb);
 
-    qry1->exec("select TeamName FROM GeneralInfo");
+    qry1->exec("SELECT TeamName FROM GeneralInfo ORDER BY TeamName");
+    ui->combo_team->addItem("None");
+    while(qry1->next())
+        ui->combo_team->addItem(qry1->value(0).toString());
 
-    modal1->setQuery(*qry1);
-    ui->combo_team->setModel(modal1);
+//    modal1->setQuery(*qry1);
+//    ui->combo_team->setModel(modal1);
+
 
     conn1.connClose();
 
@@ -76,7 +80,7 @@ void display_team::on_reload_button_clicked()
     conn.connOpen();
     QSqlQuery* qry = new QSqlQuery(conn.informationDb);
 
-    qry->prepare("Select TeamName, ArenaName, Conference, Division, StadiumCapacity, JoinedLeague, Coach from GeneralInfo");
+    qry->prepare("SELECT TeamName, ArenaName, Conference, Division, StadiumCapacity, JoinedLeague, Coach FROM GeneralInfo ORDER BY TeamName");
     qry->exec();
     modal->setQuery(*qry);
 
@@ -149,6 +153,9 @@ void display_team::on_eastern_conf_Button_clicked()
     QSqlQuery* qry=new QSqlQuery(conn.informationDb);
 
     sql = "SELECT TeamName FROM GeneralInfo WHERE Conference = 'Eastern'";
+    std::string sqlOrder = sql;
+    sql = sql + " ORDER BY TeamName";
+
     qry->prepare(sql.c_str());
 
     qry->exec();
@@ -159,6 +166,7 @@ void display_team::on_eastern_conf_Button_clicked()
 
     qDebug() << (modal->rowCount());
 
+    sql = sqlOrder;
 }
 
 void display_team::on_western_conf_Button_clicked()
@@ -170,6 +178,9 @@ void display_team::on_western_conf_Button_clicked()
     QSqlQuery* qry=new QSqlQuery(conn.informationDb);
 
     sql = "SELECT TeamName FROM GeneralInfo WHERE Conference = 'Western'";
+    std::string sqlOrder = sql;
+    sql = sql + " ORDER BY TeamName";
+
     qry->prepare(sql.c_str());
 
     qry->exec();
@@ -178,6 +189,8 @@ void display_team::on_western_conf_Button_clicked()
 
     modal->setHeaderData(0, Qt::Horizontal, QObject::tr("Team Name"));
     qDebug() << (modal->rowCount());
+
+    sql = sqlOrder;
 }
 
 
@@ -191,8 +204,8 @@ void display_team::on_division_comboBox_activated(const QString &arg1)
     std::string div = ui->division_comboBox->currentText().toStdString();
 
     std::string sqlAdd = " AND Division = '"+div+"'";
-    std::cout << sql << std::endl;
     qry->prepare((sql + sqlAdd).c_str());
+    std::cout << sql << std::endl;
 
     qry->exec();
     modal->setQuery(*qry);

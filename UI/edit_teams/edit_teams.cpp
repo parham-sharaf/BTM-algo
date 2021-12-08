@@ -21,7 +21,7 @@ edit_teams::edit_teams(QWidget *parent) : QDialog(parent), ui(new Ui::edit_teams
     conn.connOpen();
     QSqlQuery* qry = new QSqlQuery(conn.informationDb);
 
-    qry->prepare("Select TeamName, ArenaName, Conference, Division, Location, StadiumCapacity, JoinedLeague, Coach from GeneralInfo");
+    qry->prepare("SELECT TeamName, ArenaName, Conference, Division, Location, StadiumCapacity, JoinedLeague, Coach FROM GeneralInfo ORDER BY TeamName");
     qry->exec();
 
     ui->tableView->verticalHeader()->setHidden(true);
@@ -31,7 +31,6 @@ edit_teams::edit_teams(QWidget *parent) : QDialog(parent), ui(new Ui::edit_teams
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->teamCombo->addItem("None");
-    ui->arenaCombo->addItem("None");
 
     qry->prepare("SELECT TeamName FROM GeneralInfo ORDER BY teamName ASC");
     qry->exec();
@@ -39,14 +38,7 @@ edit_teams::edit_teams(QWidget *parent) : QDialog(parent), ui(new Ui::edit_teams
         ui->teamCombo->addItem(qry->value(0).toString());
     }
 
-    qry->prepare("SELECT ArenaName FROM GeneralInfo ORDER BY ArenaName ASC");
-    qry->exec();
-    while (qry->next()) {
-        ui->arenaCombo->addItem(qry->value(0).toString());
-    }
-
     connect(ui->teamCombo, SIGNAL(currentTextChanged(const QString &)), this, SLOT(on_teamCombo_currentIndexChanged(const QString &)));
-    connect(ui->arenaCombo, SIGNAL(currentTextChanged(const QString &)), this, SLOT(on_arenaCombo_currentTextChanged(const QString &)));
     connect(ui->changeArenaButton, SIGNAL(clicked()), this, SLOT(on_pushButton_clicked()));
     QPixmap bkgnd("./images/bball_lady.png");
     bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
@@ -112,7 +104,7 @@ void edit_teams::on_load_table_button_clicked()
 
     QSqlQuery * qry=new QSqlQuery(obj.informationDb);
 
-    qry->prepare("Select TeamName, ArenaName, Conference, Division, Location, StadiumCapacity, JoinedLeague, Coach from GeneralInfo");
+    qry->prepare("SELECT TeamName, ArenaName, Conference, Division, Location, StadiumCapacity, JoinedLeague, Coach FROM GeneralInfo ORDER BY TeamName");
     qry->exec();
     model->setQuery(*qry);
     ui->tableView->setModel(model);
@@ -140,12 +132,6 @@ void edit_teams::on_teamCombo_currentIndexChanged(const QString &arg1)
 }
 
 
-void edit_teams::on_arenaCombo_currentTextChanged(const QString &arg1)
-{
-    arenaName = ui->arenaCombo->currentText();
-}
-
-
 void edit_teams::on_changeArenaButton_clicked()
 {
     if (teamName == "None") {
@@ -160,6 +146,7 @@ void edit_teams::on_changeArenaButton_clicked()
     conn.connOpen();
     QSqlQuery* qry = new QSqlQuery(conn.informationDb);
     capacity = ui->capacitySpinbox->value();
+    arenaName = ui->arenaLineEdit->text();
     std::cout << teamName.toStdString() << std::endl;
     qry->prepare("UPDATE GeneralInfo SET ArenaName = '" + arenaName + "', StadiumCapacity = " + QString::number(capacity) + " WHERE TeamName = '" + teamName + "';");
     qry->exec();

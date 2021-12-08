@@ -18,6 +18,10 @@
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
       <widget class="QLabel" name="label">
+       <property name="styleSheet">
+        <string notr="true">background-color:#ffffccbc
+</string>
+       </property>
        <property name="text">
         <string>Currently Visiting:</string>
        </property>
@@ -27,6 +31,10 @@
    </item>
    <item row="0" column="1">
     <widget class="QLabel" name="current_team">
+     <property name="styleSheet">
+      <string notr="true">background-color:#ffffccbc
+</string>
+     </property>
      <property name="text">
       <string/>
      </property>
@@ -127,52 +135,54 @@
       </widget>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <widget class="QLabel" name="label_4">
-         <property name="styleSheet">
-          <string notr="true">background-color:#ffffccbc
+      <widget class="QGroupBox" name="">
+       <property name="styleSheet">
+        <string notr="true">background-color:#ffffccbc
 </string>
-         </property>
-         <property name="text">
-          <string>Spent with current team:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_spent_local">
-         <property name="styleSheet">
-          <string notr="true">background-color:#ffffccbc
-</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_3">
-         <property name="styleSheet">
-          <string notr="true">background-color:#ffffccbc
-</string>
-         </property>
-         <property name="text">
-          <string>Grand Total:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_totalEverywhere">
-         <property name="styleSheet">
-          <string notr="true">background-color:#ffffccbc
-</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-      </layout>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>Spent with current team:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_spent_local">
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>Grand Total:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_totalEverywhere">
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </item>
     </layout>
    </item>
