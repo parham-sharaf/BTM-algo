@@ -60,8 +60,11 @@ edit_souvenirs::edit_souvenirs(QWidget *parent) :
     connect(ui->delete_Button, SIGNAL(clicked()), this, SLOT(on_delete_Button_clicked()), Qt::UniqueConnection);
     connect(ui->add_Button, SIGNAL(clicked()), this, SLOT(on_add_Button_clicked()), Qt::UniqueConnection);
 
-    //read from a database into a vector
-    //display vector on combo box
+    QPixmap bkgnd("./images/bball_graf.png");
+    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Window, bkgnd);
+    this->setPalette(palette);
 
 
 }

@@ -31,7 +31,7 @@ private slots:
     void on_next_team_clicked();
 
     void on_end_trip_clicked();
-    void addToDatabase(QString teamName, QString souvenir, QString price, QString quantity);
+    void addToDatabase(const QString& teamName, QString souvenir, QString price, QString quantity);
 
     void on_pushButton_view_receipt_clicked();
 

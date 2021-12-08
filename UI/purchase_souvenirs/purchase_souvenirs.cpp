@@ -30,6 +30,12 @@ purchase_souvenirs::purchase_souvenirs(const std::deque<City>& myTeam, QWidget *
     grandTotal = 0;
     localTotal = 0;
     localNumSouv = 0;
+
+    QPixmap bkgnd("./images/bball_ouchHOT.png");
+    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Window, bkgnd);
+    this->setPalette(palette);
 }
 
 
@@ -163,7 +169,7 @@ void purchase_souvenirs::on_end_trip_clicked()
     conn.connClose();
 }
 
-void purchase_souvenirs::addToDatabase(QString teamName, QString souvenir, QString price, QString quantity)
+void purchase_souvenirs::addToDatabase(const QString& teamName, QString souvenir, QString price, QString quantity)
 {
     // place purchased souvenirs into database
     login conn;
@@ -185,8 +191,15 @@ void purchase_souvenirs::addToDatabase(QString teamName, QString souvenir, QStri
         grandTotal += total;
     }
 
-        ui->label_spent_local->setNum('$' + localTotal);
-        ui->label_totalEverywhere->setNum('$' + grandTotal);
+    std::cout << priceDouble << std::endl;
+    std::cout << quantityInt << std::endl;
+    std::cout << localNumSouv << std::endl;
+    std::cout << localTotal << std::endl;
+    std::cout << grandTotal << std::endl;
+
+
+        ui->label_spent_local->setText("$" + QString::number(localTotal));
+        ui->label_totalEverywhere->setText("$" + QString::number(grandTotal));
 
         qDebug() << "The grand total is " << grandTotal;
 
@@ -209,9 +222,9 @@ void purchase_souvenirs::addToDatabase(QString teamName, QString souvenir, QStri
     QSqlQueryModel *modal2 = new QSqlQueryModel;
     QSqlQuery* qry2 = new QSqlQuery(conn.informationDb);
     modal2->setHeaderData(0, Qt::Horizontal, QObject::tr("Souvenir"));
-    modal2->setHeaderData(0, Qt::Horizontal, QObject::tr("Price"));
+    modal2->setHeaderData(1, Qt::Horizontal, QObject::tr("Price"));
 
-    qry2->prepare("SELECT purchaseSouvenir, purchaseQuan from Purchases where purchaseTeam = '"+teamName+"'");
+    qry2->prepare("SELECT purchaseSouvenir, purchaseQuan FROM Purchases WHERE purchaseTeam = '"+teamName+"'");
     qry2->exec();
     modal2->setQuery(*qry2);
     ui->tableView_purchased->setModel(modal2);

@@ -8,6 +8,12 @@ admin::admin(QWidget *parent) :
         ui(new Ui::admin)
 {
     ui->setupUi(this);
+
+    QPixmap bkgnd("./images/bball_night.png");
+    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Window, bkgnd);
+    this->setPalette(palette);
 }
 
 admin::~admin()

@@ -56,6 +56,10 @@
                  <pointsize>10</pointsize>
                 </font>
                </property>
+               <property name="styleSheet">
+                <string notr="true">background-color:#DBF3FA
+</string>
+               </property>
                <property name="text">
                 <string>Sort By:</string>
                </property>
@@ -102,6 +106,10 @@
                   <font>
                    <pointsize>10</pointsize>
                   </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color:#DBF3FA
+</string>
                  </property>
                  <property name="text">
                   <string>Filter By:</string>
@@ -171,6 +179,10 @@
               <layout class="QVBoxLayout" name="verticalLayout_4">
                <item>
                 <widget class="QLabel" name="label_dbstatus">
+                 <property name="styleSheet">
+                  <string notr="true">background-color:#DBF3FA
+</string>
+                 </property>
                  <property name="text">
                   <string>Total Capacity:</string>
                  </property>
@@ -178,6 +190,10 @@
                </item>
                <item>
                 <widget class="QLabel" name="totalTeamCapacityLabel">
+                 <property name="styleSheet">
+                  <string notr="true">background-color:#DBF3FA
+</string>
+                 </property>
                  <property name="text">
                   <string/>
                  </property>
@@ -245,6 +261,10 @@
            </property>
            <item>
             <widget class="QGroupBox" name="groupBox">
+             <property name="styleSheet">
+              <string notr="true">background-color:#DBF3FA
+</string>
+             </property>
              <property name="title">
               <string>Category</string>
              </property>

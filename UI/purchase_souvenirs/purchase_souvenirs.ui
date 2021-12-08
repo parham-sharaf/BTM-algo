@@ -130,6 +130,10 @@
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <widget class="QLabel" name="label_4">
+         <property name="styleSheet">
+          <string notr="true">background-color:#ffffccbc
+</string>
+         </property>
          <property name="text">
           <string>Spent with current team:</string>
          </property>
@@ -137,6 +141,10 @@
        </item>
        <item>
         <widget class="QLabel" name="label_spent_local">
+         <property name="styleSheet">
+          <string notr="true">background-color:#ffffccbc
+</string>
+         </property>
          <property name="text">
           <string/>
          </property>
@@ -144,6 +152,10 @@
        </item>
        <item>
         <widget class="QLabel" name="label_3">
+         <property name="styleSheet">
+          <string notr="true">background-color:#ffffccbc
+</string>
+         </property>
          <property name="text">
           <string>Grand Total:</string>
          </property>
@@ -151,6 +163,10 @@
        </item>
        <item>
         <widget class="QLabel" name="label_totalEverywhere">
+         <property name="styleSheet">
+          <string notr="true">background-color:#ffffccbc
+</string>
+         </property>
          <property name="text">
           <string/>
          </property>

@@ -35,8 +35,23 @@ private slots:
 
     void on_revert_changes_button_clicked();
 
+//    void on_teamCombo_activated(const QString &arg1);
+//
+//    void on_arenaCapacity_activated(const QString &arg1);
+//
+//    void on_pushButton_clicked();
+
+    void on_teamCombo_currentIndexChanged(const QString &arg1);
+
+    void on_arenaCombo_currentTextChanged(const QString &arg1);
+
+    void on_changeArenaButton_clicked();
+
 private:
     Ui::edit_teams *ui;
+    QString teamName;
+    QString arenaName;
+    int capacity{};
 };
 
 #endif // EDIT_TEAMS_H

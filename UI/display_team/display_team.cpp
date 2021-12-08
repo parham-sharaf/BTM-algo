@@ -55,6 +55,12 @@ display_team::display_team(QWidget *parent) :
     connect(ui->year_checkBox, SIGNAL(stateChanged(int)), this, SLOT(on_year_checkBox_state_changed()));
     connect(ui->coach_checkBox, SIGNAL(stateChanged(int)), this, SLOT(on_coach_checkBox_state_changed()));
 
+    QPixmap bkgnd("./images/bball_everybody.png");
+    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Window, bkgnd);
+    this->setPalette(palette);
+    this->setWindowTitle("Team Information");
 }
 
 display_team::~display_team()
