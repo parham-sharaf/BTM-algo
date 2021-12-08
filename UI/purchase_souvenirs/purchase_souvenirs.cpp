@@ -163,7 +163,7 @@ void purchase_souvenirs::on_end_trip_clicked()
     conn.connClose();
 }
 
-void purchase_souvenirs::addToDatabase(QString teamName, QString souvenir, QString price, QString quantity)
+void purchase_souvenirs::addToDatabase(const QString& teamName, QString souvenir, QString price, QString quantity)
 {
     // place purchased souvenirs into database
     login conn;
@@ -185,8 +185,15 @@ void purchase_souvenirs::addToDatabase(QString teamName, QString souvenir, QStri
         grandTotal += total;
     }
 
-        ui->label_spent_local->setNum('$' + localTotal);
-        ui->label_totalEverywhere->setNum('$' + grandTotal);
+    std::cout << priceDouble << std::endl;
+    std::cout << quantityInt << std::endl;
+    std::cout << localNumSouv << std::endl;
+    std::cout << localTotal << std::endl;
+    std::cout << grandTotal << std::endl;
+
+
+        ui->label_spent_local->setText("$" + QString::number(localTotal));
+        ui->label_totalEverywhere->setText("$" + QString::number(grandTotal));
 
         qDebug() << "The grand total is " << grandTotal;
 
