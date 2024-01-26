@@ -1,5 +1,5 @@
-# NBA-Basketball
-NBA basketball
+# BTM
+NBA basketball team matching (BTM) algorithm for setting up teams and keeping track of tournament results
 
 ## Requirments
 
