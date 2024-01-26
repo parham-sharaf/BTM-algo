@@ -1,5 +1,5 @@
 # NBA-Basketball
-CS 1D Project 2 NBA basketball
+NBA basketball
 
 ## Requirments
 
